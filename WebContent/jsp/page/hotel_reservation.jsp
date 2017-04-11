@@ -4,6 +4,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>酒店预订</title>
+<script src="./js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		for (var i = 0; i < 100; i++) {
+			$("#strong").fadeOut();
+			$("#strong").fadeIn();
+		}
+	});
+</script>
 </head>
 <body>
 	<div style="height: 10%">

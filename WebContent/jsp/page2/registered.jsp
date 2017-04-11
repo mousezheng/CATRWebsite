@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,30 +15,38 @@
 	<!-- 注册信息 -->
 	<div align="center" style="padding-bottom: 15%">
 		<form name="form1" action="Register" method="post">
-			<table
-				style="border-collapse: separate; border-spacing: 40px; font-size: 20px;">
+			<table style="border-collapse: separate; border-spacing: 40px; font-size: 20px;">
 				<tr>
 					<td>姓名:</td>
-					<td><input type="text" name="username" id="username" /></td>
+					<td>
+						<input type="text" name="username" id="username" />
+					</td>
 				</tr>
 				<tr>
 					<td>手机号码：</td>
-					<td><input type="text" name="phone" id="phone" /></td>
+					<td>
+						<input type="text" name="phone" id="phone" />
+					</td>
 				</tr>
 				<tr>
 					<td>密码:</td>
-					<td><input type="password" name="password" id="password" /></td>
+					<td>
+						<input type="password" name="password" id="password" />
+					</td>
 				</tr>
 				<tr>
 					<td>确认密码:&nbsp</td>
-					<td><input type="password" name="confirmPassword"
-						id="confirmPAssword" /></td>
+					<td>
+						<input type="password" name="confirmPassword" id="confirmPAssword" />
+					</td>
 				</tr>
 				<ty>
 				<td></td>
-				<td><input class="btn btn-lg btn-primary" type="button"
-					value="提交" onclick="judge()" /> &nbsp <input
-					class="btn-lg btn-warning" type="reset" value="重置" /></td>
+				<td>
+					<input class="btn btn-lg btn-primary" type="button" value="提交" onclick="judge()" />
+					&nbsp
+					<input class="btn-lg btn-warning" type="reset" value="重置" />
+				</td>
 				</ty>
 			</table>
 		</form>
