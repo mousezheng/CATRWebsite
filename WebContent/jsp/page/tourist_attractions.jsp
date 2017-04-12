@@ -18,6 +18,21 @@
 	border-radius: 20px;
 }
 
+.box {
+	display: block;
+	position: fixed;
+	right: 0;
+	top: 10%;
+	padding: 5px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	background: #3B9DD6;
+	color: #E8E8E8;
+	width: 20%;
+	height: 250px;
+}
+
 .item_font {
 	border-radius: 20px;
 	background-color: #eeeeee;
@@ -49,6 +64,15 @@
 					</font>
 					<br />
 					<font size="2">翠华山原名太乙山，景区由碧山湖景区、天池景区和山崩石海景区3部分组成。传说有太乙真人在此修炼过，由此得名。 翠华山旅游景区位于西安城南20公里处秦岭北麓，景区面积32平方公里。1992年被国家林业部评为“终南山国家森林公园”；1993年被评为“省级名胜风景区”；1997年被评为“西安旅游十大景”；2001年被国土资源部评为“陕西翠华山山崩景观国家地质公园”；2002年被国家旅游局评为“AAAA级旅游景区”；2009年被联合国教科文组织评为“秦岭终南山世界地质公园”；[1] 同年被评为“陕西省平安景区”；2010年被评为“陕西省平安示范景区”[2] 2012年荣获国家级水利风景区。</font>
+					<br />
+					<div style="width: 100%" align="right">
+						<a href="./jsp/page/detailed_info_page.jsp">
+							<button class="btn btn-lg btn-primary" style="padding: 5px">查看详情</button>
+						</a>
+						<a href="./jsp/page/detailed_info_page.jsp">
+							<button class="btn btn-lg btn-primary" style="padding: 5px">预定门票</button>
+						</a>
+					</div>
 				</td>
 				<td width="100px">
 					<img alt="景点图片" src="resources/翠华山/image.jpg" width="160px" height="160px" class="item_image">
@@ -145,20 +169,23 @@
 				</td>
 			</tr>
 		</table>
-		<div style="width: 20%; height: 480px; background-color: #EEEEEE; float: right; padding-top: 0px" align="center">
-			<form action="" style="background-color: #FFFFFF; padding-top: 10px">
+		<div class="box" style="width: 20%; height: 480px; background-color: #EEEEEE; padding-top: 20px" align="center">
+			<form action="" style="background-color: #FFFFFF; padding-top: 20px; width: 100%">
 				<input type="text" width="70%" height="50px" placeholder="输入景点名称/相关位置" id="input_text">
 				<a href="https://www.baidu.com/">
 					<img alt="图标" src="resources/query.png" width="20%" height="50px" />
 				</a>
 			</form>
-			<font size="5" style="font-style: normal;">
-				<strong>景点热搜排行榜</strong>
+			<font size="5" color="#000000">
+				<strong>
+					景点热搜排行榜
+					<br />
+					······
+					<br />
+				</strong>
 			</font>
-			<br />
-			······
-			<br />
-			<hr width="5px" />
+
+
 			<a href="">
 				<font size="6">top 1 : 大雁塔</font>
 			</a>

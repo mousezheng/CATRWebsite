@@ -18,6 +18,10 @@
 	<div style="height: 10%">
 		<jsp:include page="../part/head.jsp"></jsp:include>
 	</div>
+	<div style="width: 100%" align="center">
+		<strong style="font-size: 30px">租车服务</strong>
+		<hr/>
+	</div>
 	<font size="4" style="margin-left: 30px">目的地：</font>
 	<select id="sex" name="sex" style="width: 300px; height: 30px; margin: 10px">
 		<option value="">请选择目的地</option>

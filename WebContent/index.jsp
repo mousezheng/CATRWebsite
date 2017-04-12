@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function lodckick() {
 		$('#myCarousel').carousel({
-			interval : 1000
+			interval : 1500
 		});//每隔2秒自动轮播 
 	}
 </script>

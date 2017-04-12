@@ -35,9 +35,12 @@
 				<td rowspan="4" align="center" style="padding: 20px" width="100px">
 					<img alt="头像" src="resources/秦始皇兵马俑/image.jpg" width="200px" ;height="200px" class="box">
 					<br />
+					<button style="width: 200px;border-radius: 10px">修改头像</button>
 				</td>
-				<td colspan="2" style="font-size: 30px">
+				<td colspan="3" style="font-size: 30px">
 					<strong>小鼠标</strong>
+					<a href="" style="font-size: 18px">修改密码</a>
+					<img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px"> 
 				</td>
 			</tr>
 			<tr>
@@ -87,7 +90,7 @@
 			<tr align="center" class="item2">
 				<td>大雁塔参观门票</td>
 				<td>1</td>
-				<td>￥50&nbsp;￥50</td>
+				<td>三日游特价票</td>
 				<td>2017/2/13(已过期)</td>
 			</tr>
 			<tr align="center" class="item">
@@ -99,19 +102,7 @@
 			<tr align="center" class="item2">
 				<td>大雁塔参观门票</td>
 				<td>1</td>
-				<td>￥50&nbsp;￥50</td>
-				<td>2017/2/13(已过期)</td>
-			</tr>
-			<tr align="center" class="item">
-				<td>大雁塔参观门票</td>
-				<td>2</td>
-				<td>￥50&nbsp;￥100</td>
-				<td>2017/12/13(未过期)</td>
-			</tr>
-			<tr align="center" class="item2">
-				<td>大雁塔参观门票</td>
-				<td>1</td>
-				<td>￥50&nbsp;￥50</td>
+				<td>三日游特价票</td>
 				<td>2017/2/13(已过期)</td>
 			</tr>
 			<tr>

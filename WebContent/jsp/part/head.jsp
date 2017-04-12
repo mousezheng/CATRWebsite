@@ -69,8 +69,8 @@
 				</li>
 				<li>
 					<a href="jsp/page/three_day_swim.jsp">
-						<strong id="strong">❤</strong>
-						三日游
+						<strong id="strong"><font color="#ff2343">❤</font></strong>
+						七日游
 					</a>
 				</li>
 				<li>
