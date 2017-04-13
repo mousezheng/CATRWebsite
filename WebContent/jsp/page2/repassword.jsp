@@ -4,14 +4,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>重置密码</title>
-<script src="./js/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		for (var i = 0; i < 100; i++) {
-			$("#strong").fadeOut();
-			$("#strong").fadeIn();
+	function passworld_check() {
+		new_password
+		if (document.form1.password.value == ""
+				|| document.form1.new_password.value == "") {
+			window.alert("密码不能为空");
+			return;
 		}
-	});
+		if (document.form1.password.value.length < 6
+				|| document.form1.new_password.value == "") {
+			window.alert("密码不能少于6位");
+			return;
+		}
+		if (document.form1.new_password.value != document.form1.confirmPassword.value) {
+			window.alert("确认密码与新密码不一致");
+			return;
+		}
+		document.form1.submit();
+	}
 </script>
 </head>
 <body>
@@ -24,13 +35,13 @@
 				<tr>
 					<td>原始密码</td>
 					<td>
-						<input type="text" name="username" id="username" />
+						<input type="text" id="password" name="password" />
 					</td>
 				</tr>
 				<tr>
 					<td>新密码：</td>
 					<td>
-						<input type="text" name="phone" id="phone" />
+						<input type="text" name="new_password" id="new_password" />
 					</td>
 				</tr>
 				<tr>
@@ -42,7 +53,7 @@
 				<ty>
 				<td></td>
 				<td>
-					<input class="btn btn-lg btn-primary" type="button" value="提交" onclick="judge()" />
+					<input class="btn btn-lg btn-primary" type="button" value="提交" onclick="passworld_check()" />
 					&nbsp
 					<input class="btn-lg btn-warning" type="reset" value="重置" />
 				</td>

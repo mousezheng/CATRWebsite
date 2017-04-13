@@ -22,18 +22,25 @@
 	<div align="center">
 		<table width="80%" style="margin-top: 30px; font-size: 20px">
 			<tr>
-				<td rowspan="2" align="center" style="padding: 20px" >
+				<td rowspan="2" align="center" style="padding: 20px">
 					<img alt="头像" src="resources/秦始皇兵马俑/image.jpg" width="100%" ;height="100%">
-					<br />
+					<br /><hr/>
+					<font size="2">浏览次数:100</font>&nbsp
+					<font size="2">搜索次数:100</font>
 				</td>
-				<td colspan="2" >
+				<td colspan="2">
 					<strong style="font-size: 30px">秦始皇兵马俑</strong>
 					<font> (临潼南) </font>
 					<font style="float: right; padding-right: 20px; padding-top: 10px">
 						单人票价：
-						<strong>100元</strong>
+						<strong>
+							100元&nbsp;
+							<a href="./jsp/page/detailed_info_page.jsp">
+								<button class="btn btn-lg btn-primary" style="padding: 5px">预定门票</button>
+							</a>
+						</strong>
 					</font>
-					<hr/>
+					<hr />
 				</td>
 			</tr>
 			<tr>

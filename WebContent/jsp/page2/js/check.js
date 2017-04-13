@@ -41,22 +41,7 @@ function validatemobile(mobile) {
 	}
 }
 
-//重置密码校验
-function passworld_check() {
-	if (document.form1.password.value == "") {
-		window.alert("密码不能为空");
-		return;
-	}
-	if (document.form1.password.value.length < 6) {
-		window.alert("密码不能少于6位");
-		return;
-	}
-	if (document.form1.password.value != document.form1.confirmPassword.value) {
-		window.alert("确认密码与新密码不一致");
-		return;
-	}
-	document.form1.submit();
-}
+
 //登陆校验
 function login_check()
 {

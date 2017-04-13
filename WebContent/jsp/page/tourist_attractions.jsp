@@ -170,10 +170,10 @@
 			</tr>
 		</table>
 		<div class="box" style="width: 20%; height: 480px; background-color: #EEEEEE; padding-top: 20px" align="center">
-			<form action="" style="background-color: #FFFFFF; padding-top: 20px; width: 100%">
+			<form action="" style="background-color: #EEEEEE; padding-top: 20px; width: 100%">
 				<input type="text" width="70%" height="50px" placeholder="输入景点名称/相关位置" id="input_text">
 				<a href="https://www.baidu.com/">
-					<img alt="图标" src="resources/query.png" width="20%" height="50px" />
+					<img alt="图标" src="resources/query.png" width="20%" height="50px" style="background-color: #EEEEEE;" />
 				</a>
 			</form>
 			<font size="5" color="#000000">
