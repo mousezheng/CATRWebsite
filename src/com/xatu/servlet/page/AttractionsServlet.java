@@ -40,7 +40,10 @@ public class AttractionsServlet extends HttpServlet {
 				getServletContext());
 
 		session.setAttribute("attractionList", attractions);
-		response.sendRedirect("jsp/page/tourist_attractions.jsp");
+		String[] nameStr = operation.select4DESC();
+		session.setAttribute("nameStr", nameStr);  
+		int num = attractions.size()/5;
+		response.sendRedirect("jsp/page/tourist_attractions.jsp?sum="+num+"&now=0");
 		// ≤‚ ‘ π”√
 		// String str = FileService.fileToString("resources/¥Û—„À˛/describe.txt",
 		// getServletContext());

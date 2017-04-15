@@ -223,10 +223,9 @@ public class DBOperation {
 			sql.append("," + tableHead[i]);
 		}
 		sql.append(" from " + tableName);
-		sql.append("  where user_name='" + whereStr+"'"); 
+		sql.append("  where user_name='" + whereStr + "'");
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
-			System.out.println(sql.toString());
 			ResultSet rs = statement.executeQuery();
 			System.out.println("sql执行完毕");
 			// 解析查找结果
@@ -241,6 +240,26 @@ public class DBOperation {
 			e.printStackTrace();
 		}
 		return strList;
+	}
+
+	public String[] select4DESC() {
+		String sql = "select name from tb_attractions order by query_num DESC limit 4";
+		String[] name = new String[4];
+		try {
+			PreparedStatement statement = dbConn.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {  
+				for (int i = 0; i < 4; i++) {
+					name[i] = rs.getString(1);
+					rs.next();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("select4DESC() "+"出错！");
+			e.printStackTrace();
+		}
+		
+		return name;
 	}
 
 }

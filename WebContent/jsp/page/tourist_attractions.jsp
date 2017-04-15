@@ -11,7 +11,7 @@
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>旅游景点</title>
-<script src="./js/jquery.min.js"></script>
+<script src="jquery/jquery.min.js"></script>
 <script type="text/javascript">
  	$(document).ready(function() {
 		for (var i = 0; i < 100; i++) {
@@ -19,6 +19,35 @@
 			$("#strong").fadeIn();
 		}
 	});
+
+ 	//正则表达式方法获取get
+ 	function GetQueryString(name)
+ 	{
+ 	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+ 	     var r = window.location.search.substr(1).match(reg);
+ 	     if(r!=null)return  unescape(r[2]); return null;
+ 	}
+ 	
+ 	function topone(){
+		var now = parseInt(GetQueryString("now"));
+		var sum = parseInt(GetQueryString("sum"));
+ 		if( now > 0){
+ 			now = now - 1;
+ 			window.location.href="jsp/page/tourist_attractions.jsp?sum="+sum+"&now="+now;
+ 		}else{
+ 			alert("已经是首页无法跳转上一页！");
+ 		}
+ 	}
+ 	function underone(){
+ 		var now = parseInt(GetQueryString("now"));
+		var sum = parseInt(GetQueryString("sum"));
+ 		if( sum > now){
+ 			now = now + 1;
+ 			window.location.href="jsp/page/tourist_attractions.jsp?sum="+sum+"&now="+now;
+ 		}else{
+ 			alert("已经是首页无法跳转上一页！");
+ 		}
+ 	}
 </script>
 <style type="text/css">
 .item_image {
@@ -47,7 +76,7 @@
 }
 </style>
 </head>
-<body onload="load_attraction(0)">
+<body >
 
 	<div style="height: 10%">
 		<jsp:include page="../part/head.jsp"></jsp:include>
@@ -62,7 +91,7 @@
 					</td>
 				</tr>
 			</thead>
-			<c:forEach items="${attractionList}" var="attraction">
+			<c:forEach items="${attractionList}" var="attraction" begin="${param.now*5}" end="${param.now*5+4}">
 				<tr>
 					<td width="100%-200px" class="item_font">
 						<font size="5">${attraction.name}</font>
@@ -91,9 +120,9 @@
 			<tr>
 				<td colspan="2" align="center" style="padding-bottom: 100px">
 					<font size="4">
-						<a>上一页</a>
+						<a onclick="topone()">上一页</a>
 						&nbsp 第1页/共10页
-						<a>下一页</a>
+						<a onclick="underone()">下一页</a>
 						&nbsp
 					</font>
 				</td>
@@ -117,19 +146,19 @@
 
 
 			<a href="">
-				<font size="6">top 1 : 大雁塔</font>
+				<font size="6">top 1 : ${nameStr[0]}</font>
 			</a>
 			<hr style="height: 5px; border: none; border-top: 5px ridge green;" />
 			<a href="">
-				<font size="5">top 2 : 翠华山</font>
+				<font size="5">top 2 :${nameStr[1]}</font>
 			</a>
 			<hr style="height: 5px; border: none; border-top: 5px ridge green;" />
 			<a href="">
-				<font size="4">top 3 : 南五台</font>
+				<font size="4">top 3 :${nameStr[2]}</font>
 			</a>
 			<hr style="height: 5px; border: none; border-top: 5px ridge green;" />
 			<a href="">
-				<font size="4">top 4 : 小雁塔</font>
+				<font size="4">top 4 : ${nameStr[3]}</font>
 			</a>
 			<hr style="height: 5px; border: none; border-top: 5px ridge green;" />
 		</div>

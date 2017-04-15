@@ -35,7 +35,8 @@ public class MessageServlet extends HttpServlet {
 		List<Message> messages =  ConversionService.object2Message(operation.selectWhere(tableHead, tableName,"tb_user","tb_user.id=tb_message.user_id"), getServletContext());
 	
 		session.setAttribute("messageList", messages);
-		response.sendRedirect("jsp/page/message_board.jsp");
+		int num = messages.size()/10;
+		response.sendRedirect("jsp/page/message_board.jsp?"+"sum="+num+"&now=0");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

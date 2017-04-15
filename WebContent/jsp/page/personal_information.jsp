@@ -10,7 +10,7 @@
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>个人信息</title>
-<script src="./js/jquery.min.js"></script>
+<script src="jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		for (var i = 0; i < 100; i++) {
@@ -18,6 +18,35 @@
 			$("#strong").fadeIn();
 		}
 	});
+	
+	//正则表达式方法获取get
+ 	function GetQueryString(name)
+ 	{
+ 	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+ 	     var r = window.location.search.substr(1).match(reg);
+ 	     if(r!=null)return  unescape(r[2]); return null;
+ 	}
+ 	
+ 	function topone(){
+		var now = parseInt(GetQueryString("now"));
+		var sum = parseInt(GetQueryString("sum"));
+ 		if( now > 0){
+ 			now = now - 1;
+ 			window.location.href="jsp/page/tourist_attractions.jsp?sum="+sum+"&now="+now;
+ 		}else{
+ 			alert("已经是首页无法跳转上一页！");
+ 		}
+ 	}
+ 	function underone(){
+ 		var now = parseInt(GetQueryString("now"));
+		var sum = parseInt(GetQueryString("sum"));
+ 		if( sum > now){
+ 			now = now + 1;
+ 			window.location.href="jsp/page/tourist_attractions.jsp?sum="+sum+"&now="+now;
+ 		}else{
+ 			alert("已经是首页无法跳转上一页！");
+ 		}
+ 	}
 </script>
 <style type="text/css">
 .item {

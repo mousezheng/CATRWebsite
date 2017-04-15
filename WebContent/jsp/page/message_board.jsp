@@ -11,7 +11,7 @@
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>留言板</title>
-<script src="./js/jquery.min.js"></script>
+<script src="jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		for (var i = 0; i < 100; i++) {
@@ -20,6 +20,38 @@
 			document.form1.massage.value = "";
 		}
 	});
+
+	//正则表达式方法获取get
+	function GetQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null)
+			return unescape(r[2]);
+		return null;
+	}
+
+	function topone() {
+		var now = parseInt(GetQueryString("now"));
+		var sum = parseInt(GetQueryString("sum"));
+		if (now > 0) {
+			now = now - 1;
+			window.location.href = "jsp/page/message_board.jsp?sum=" + sum
+					+ "&now=" + now;
+		} else {
+			alert("已经是首页无法跳转上一页！");
+		}
+	}
+	function underone() {
+		var now = parseInt(GetQueryString("now"));
+		var sum = parseInt(GetQueryString("sum"));
+		if (sum > now) {
+			now = now + 1;
+			window.location.href = "jsp/page/message_board.jsp?sum=" + sum
+					+ "&now=" + now;
+		} else {
+			alert("已经是首页无法跳转上一页！");
+		}
+	}
 </script>
 <style type="text/css">
 .box {
@@ -57,7 +89,7 @@
 			<strong style="font-size: 30px;">留言板</strong>
 		</div>
 		<hr />
-		<c:forEach items="${messageList}" var="message">
+		<c:forEach items="${messageList}" var="message" begin="${param.now*5}" end="${param.now*5+4}">
 			<table style="width: 80%; padding: 20px; margin-bottom: 20px" border="2px" bordercolor="20b2aa">
 				<tr>
 					<td rowspan="3" align="center" style="padding: 20px" width="100px">
@@ -95,9 +127,9 @@
 			<tr>
 				<td colspan="2" align="center" height="100px">
 					<font size="4">
-						<a>上一页</a>
+						<a onclick="topone()">上一页</a>
 						&nbsp 第1页/共10页
-						<a>下一页</a>
+						<a onclick="underone()">下一页</a>
 						&nbsp
 					</font>
 				</td>

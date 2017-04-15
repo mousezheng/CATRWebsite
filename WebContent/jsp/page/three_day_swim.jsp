@@ -31,7 +31,7 @@
 	background-color: #ff4523
 }
 </style>
-<script src="./js/jquery.min.js"></script>
+<script src="jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		for (var i = 0; i < 100; i++) {
