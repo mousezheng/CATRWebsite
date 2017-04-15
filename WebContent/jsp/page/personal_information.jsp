@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>个人信息</title>
 <script src="./js/jquery.min.js"></script>
@@ -18,6 +24,7 @@
 	height: 50px;
 	background-color: #87CEEB;
 }
+
 .item2 {
 	height: 50px;
 	background-color: #76EE00;
@@ -33,29 +40,29 @@
 		<table width="80%" style="margin-top: 30px; font-size: 20px">
 			<tr>
 				<td rowspan="4" align="center" style="padding: 20px" width="100px">
-					<img alt="头像" src="resources/秦始皇兵马俑/image.jpg" width="200px" ;height="200px" class="box">
+					<img alt="头像" src="resources/user_head_img/head_${user.id}.jpg" width="200px" ;height="200px" class="box">
 					<br />
-					<button style="width: 200px;border-radius: 10px">修改头像</button>
+					<button style="width: 200px; border-radius: 10px">修改头像</button>
 				</td>
 				<td colspan="3" style="font-size: 30px">
-					<strong>小鼠标</strong>
-					<a href="" style="font-size: 18px">修改密码</a>
-					<img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px"> 
+					<strong>${user.userName}</strong>
+					<a href="jsp/page2/repassword.jsp" style="font-size: 18px">修改密码</a>
+					<img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px">
 				</td>
 			</tr>
 			<tr>
-				<td>真实姓名：XXX（可见可选）</td>
-				<td>性别：男</td>
-				<td>年龄：21</td>
+				<td>真实姓名：${user.name}</td>
+				<td>性别：${user.sex}</td>
+				<td>年龄：${user.age }</td>
 			</tr>
 			<tr>
-				<td>住址：西安工业大学</td>
-				<td>联系电话：1327758374</td>
-				<td>出生年月：1996-8-7</td>
+				<td>住址：${user.address }</td>
+				<td>联系电话：${user.phone }</td>
+				<td>出生年月：${user.birthday}</td>
 			</tr>
 			<tr>
-				<td>Email地址：14335543@qq.com</td>
-				<td colspan="2">个性签名：这个人很懒什么也没写。</td>
+				<td>Email地址：${user.email}</td>
+				<td colspan="2">个性签名：${user.describe}</td>
 			</tr>
 		</table>
 	</div>

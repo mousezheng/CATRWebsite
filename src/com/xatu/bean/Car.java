@@ -6,11 +6,11 @@ package com.xatu.bean;
  * @author zsl
  *
  */
-public class Cat {
-
+public class Car {
+ 
 	private int id;
 	private String time; // 时间
-	private String adress; // 地址
+	private String address; // 地址
 	private int prices; // 价格
 	private String contactName; // 联系人姓名
 	private String contactPhone;// 联系人电话
@@ -32,12 +32,12 @@ public class Cat {
 		this.time = time;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String adress) {
+		this.address = adress;
 	}
 
 	public int getPrices() {

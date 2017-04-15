@@ -66,103 +66,47 @@
 						<hr />
 					</td>
 				</tr>
-				<tr>
-					<td width="300px" align="center">
-						<img alt="景点图片" src="resources/翠华山/image.jpg" width="200px" height="200px" class="item_image" style="border-radius: 10px">
-					</td>
-					<td colspan="5">
-						<div>
-							<font size="5">大雁塔，翠华山，壶口瀑布三日游</font>
-							<font style="float: right; padding-right: 20px">
-								单人票活动价：
-								<strong>200元</strong>
-							</font>
-							<br />
-							<font size="5">旅游路线：</font>
-							<font size="4">火车站&nbsp;&gt;&nbsp;大雁塔&nbsp;&gt;&nbsp;翠华山&nbsp;&gt;&nbsp;壶口瀑布</font>
-							<br />
-							<font size="5">详情：</font>
-							<font size="3">
-								本次活动是属于
-								<font size="5" color="#FF0000">三日游活动</font>
-								从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;
-							</font>
-							<div style="width: 100%" align="right">
-								<a href="./jsp/page/detailed_info_page.jsp">
-									<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button>
-								</a>
+				<c:forEach items="${activityList}" var="activity">
+
+					<tr>
+						<td width="300px" align="center">
+							<img alt="景点图片" src="${activity.imageFile}/image.jpg" width="200px" height="200px" class="item_image" style="border-radius: 10px">
+						</td>
+						<td colspan="5">
+							<div>
+								<font size="5">${activity.name}</font>
+								<font style="float: right; padding-right: 20px">
+									单人票活动价：
+									<strong>${activity.prices}元</strong>
+								</font>
+								<br />
+								<font size="5">旅游路线：</font>
+								<font size="4">
+									<strong style="color: #ff0000">火车站</strong>
+									<c:forEach items="${activity.places}" var="places">
+								&nbsp;&gt;&nbsp;${places}
+								</c:forEach>
+									<br />
+									<font size="5">详情：</font>
+									<font size="3">
+										本次活动是属于：
+										<font size="5" color="#FF0000">${activity.number}日游活动</font>
+										${activity.info}
+									</font>
+									<div style="width: 100%" align="right">
+										<a href="./jsp/page/detailed_info_page.jsp">
+											<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button>
+										</a>
+									</div>
 							</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="6">
-						<hr />
-					</td>
-				</tr>
-				<tr>
-					<td width="300px" align="center">
-						<img alt="景点图片" src="resources/翠华山/image.jpg" width="200px" height="200px" class="item_image" style="border-radius: 10px">
-					</td>
-					<td colspan="5">
-						<div>
-							<font size="5">大雁塔，翠华山，壶口瀑布三日游</font>
-							<font style="float: right; padding-right: 20px">
-								单人票活动价：
-								<strong>200元</strong>
-							</font>
-							<br />
-							<font size="5">旅游路线：</font>
-							<font size="4">火车站&nbsp;&gt;&nbsp;大雁塔&nbsp;&gt;&nbsp;翠华山&nbsp;&gt;&nbsp;壶口瀑布</font>
-							<br />
-							<font size="5">详情：</font>
-							<font size="3">
-								本次活动是属于
-								<font size="5" color="#FF0000">三日游活动</font>
-								从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;
-							</font>
-							<div style="width: 100%" align="right">
-								<a href="./jsp/page/detailed_info_page.jsp">
-									<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button>
-								</a>
-							</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="6">
-						<hr />
-					</td>
-				</tr>
-				<tr>
-					<td width="300px" align="center">
-						<img alt="景点图片" src="resources/翠华山/image.jpg" width="200px" height="200px" class="item_image" style="border-radius: 10px">
-					</td>
-					<td colspan="5">
-						<div>
-							<font size="5">大雁塔，翠华山，壶口瀑布三日游</font>
-							<font style="float: right; padding-right: 20px">
-								单人票活动价：
-								<strong>200元</strong>
-							</font>
-							<br />
-							<font size="5">旅游路线：</font>
-							<font size="4">火车站&nbsp;&gt;&nbsp;大雁塔&nbsp;&gt;&nbsp;翠华山&nbsp;&gt;&nbsp;壶口瀑布</font>
-							<br />
-							<font size="5">详情：</font>
-							<font size="3">
-								本次活动是属于
-								<font size="5" color="#FF0000">三日游活动</font>
-								从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;从火车站出发，当天到达大雁塔，次日前往翠华山，在日到达壶口瀑布;
-							</font>
-							<div style="width: 100%" align="right">
-								<a href="./jsp/page/detailed_info_page.jsp">
-									<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button>
-								</a>
-							</div>
-						</div>
-					</td>
-				</tr>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6">
+							<hr />
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>

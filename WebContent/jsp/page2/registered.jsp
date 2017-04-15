@@ -14,7 +14,7 @@
 	</div>
 	<!-- 注册信息 -->
 	<div align="center" style="padding-bottom: 15%">
-		<form name="form1" action="Register" method="post">
+		<form name="form1" action="RegisteredServlet" method="post">
 			<table style="border-collapse: separate; border-spacing: 40px; font-size: 20px;">
 				<tr>
 					<td>姓名:</td>

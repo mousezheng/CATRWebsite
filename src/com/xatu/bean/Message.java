@@ -10,12 +10,21 @@ public class Message {
 
 	private int id;
 	private String userId; // 用户id
+	private String userName; // name
 	private String content; // 内容
 	private int agreeNum; // 赞同个数
 	private int disagreeNum; // 不赞同个数
 	private String time; // 时间
-	private String adress; // 地址
+	private String address; // 地址
 	private int num; // 楼层
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public int getId() {
 		return id;
@@ -65,12 +74,12 @@ public class Message {
 		this.time = time;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String adress) {
+		this.address = adress;
 	}
 
 	public int getNum() {

@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>留言板</title>
 <script src="./js/jquery.min.js"></script>
@@ -50,98 +57,39 @@
 			<strong style="font-size: 30px;">留言板</strong>
 		</div>
 		<hr />
-		<table style="width: 80%; padding: 20px; margin-bottom: 20px" border="2px" bordercolor="20b2aa">
-			<tr>
-				<td rowspan="3" align="center" style="padding: 20px" width="100px">
-					<img alt="头像" src="resources/秦始皇兵马俑/image.jpg" width="100px" ;height="100px" class="box">
-					<hr style="padding: 5px; margin: 5px" />
-					<font size="4" color="8a2be2">用户名</font>
-				</td>
-				<td height="20px" style="padding-left: 20px">
-					<font size="3">
-						<strong>1楼&nbsp;发表时间：</strong>
-					</font>
-					<font size="3">2017年4月11日18:12:12</font>
-				</td>
-			</tr>
-			<tr>
-				<td height="100px" style="padding: 0px; margin: 0px; padding-left: 10px;">
-					<div style="padding: 0px; margin: 0px; padding-left: 10px; font-size: 20px;">
-						<strong>留言内容：</strong>
-						<hr />
-					</div>
-					<font size="3">今天去壶口瀑布游玩了，景色十分壮观</font>
-				</td>
-			</tr>
-			<tr height="20px" align="right">
-				<td>
-					<!-- <a href="gg" style="width: 40px; padding: 5px">回复(0)</a> -->
-					<a href="gg" style="width: 40px; padding: 5px">赞同(0)</a>
-					<a href="gg" style="width: 40px; padding: 5px">不赞同(0)</a>
-				</td>
-			</tr>
-		</table>
-		<table style="width: 80%; padding: 20px;margin-bottom: 20px" border="2px" bordercolor="20b2aa">
-			<tr>
-				<td rowspan="3" align="center" style="padding: 20px" width="100px">
-					<img alt="头像" src="resources/秦始皇兵马俑/image.jpg" width="100px" ;height="100px" class="box">
-					<hr style="padding: 5px; margin: 5px" />
-					<font size="4" color="8a2be2">用户名</font>
-				</td>
-				<td height="20px" style="padding-left: 20px">
-					<font size="3">
-						<strong>2楼&nbsp;发表时间：</strong>
-					</font>
-					<font size="3">2017年4月11日18:12:12</font>
-				</td>
-			</tr>
-			<tr>
-				<td height="100px" style="padding: 0px; margin: 0px; padding-left: 10px;">
-					<div style="padding: 0px; margin: 0px; padding-left: 10px; font-size: 20px;">
-						<strong>留言内容：</strong>
-						<hr />
-					</div>
-					<font size="3">今天去壶口瀑布游玩了，景色十分壮观</font>
-				</td>
-			</tr>
-			<tr height="20px" align="right">
-				<td>
-					<a href="gg" style="width: 40px; padding: 5px">回复(0)</a>
-					<a href="gg" style="width: 40px; padding: 5px">赞同(0)</a>
-					<a href="gg" style="width: 40px; padding: 5px">不赞同(0)</a>
-				</td>
-			</tr>
-		</table>
-		<table style="width: 80%; padding: 20px;margin-bottom: 20px" border="2px" bordercolor="20b2aa">
-			<tr>
-				<td rowspan="3" align="center" style="padding: 20px" width="100px">
-					<img alt="头像" src="resources/秦始皇兵马俑/image.jpg" width="100px" ;height="100px" class="box">
-					<hr style="padding: 5px; margin: 5px" />
-					<font size="4" color="8a2be2">用户名</font>
-				</td>
-				<td height="20px" style="padding-left: 20px">
-					<font size="3">
-						<strong>3楼&nbsp;发表时间：</strong>
-					</font>
-					<font size="3">2017年4月11日18:12:12</font>
-				</td>
-			</tr>
-			<tr>
-				<td height="100px" style="padding: 0px; margin: 0px; padding-left: 10px;">
-					<div style="padding: 0px; margin: 0px; padding-left: 10px; font-size: 20px;">
-						<strong>4楼&nbsp;留言内容：</strong>
-						<hr />
-					</div>
-					<font size="3">今天去壶口瀑布游玩了，景色十分壮观</font>
-				</td>
-			</tr>
-			<tr height="20px" align="right">
-				<td>
-					<a href="gg" style="width: 40px; padding: 5px">回复(0)</a>
-					<a href="gg" style="width: 40px; padding: 5px">赞同(0)</a>
-					<a href="gg" style="width: 40px; padding: 5px">不赞同(0)</a>
-				</td>
-			</tr>
+		<c:forEach items="${messageList}" var="message">
+			<table style="width: 80%; padding: 20px; margin-bottom: 20px" border="2px" bordercolor="20b2aa">
+				<tr>
+					<td rowspan="3" align="center" style="padding: 20px" width="100px">
+						<img alt="头像" src="resources/user_head_img/head_${message.id}.jpg" width="100px" ;height="100px" class="box">
+						<hr style="padding: 5px; margin: 5px" />
+						<font size="4" color="8a2be2">${message.userName}</font>
+					</td>
+					<td height="20px" style="padding-left: 20px">
+						<font size="3">
+							<strong>${message.id}楼&nbsp;发表时间：</strong>
+						</font>
+						<font size="3">${message.time}</font>
+					</td>
+				</tr>
+				<tr>
+					<td height="100px" style="padding: 0px; margin: 0px; padding-left: 10px;">
+						<div style="padding: 0px; margin: 0px; padding-left: 10px; font-size: 20px;">
+							<strong>留言内容：</strong>
+							<hr />
+						</div>
+						<font size="3">${message.content}</font>
+					</td>
+				</tr>
+				<tr height="20px" align="right">
+					<td>
+						<!-- <a href="gg" style="width: 40px; padding: 5px">回复(0)</a> -->
+						<a href="gg" style="width: 40px; padding: 5px">赞同(${message.agreeNum})</a>
+						<a href="gg" style="width: 40px; padding: 5px">不赞同(${message.disagreeNum})</a>
+					</td>
+				</tr>
+			</table>
+		</c:forEach>
 		</table>
 		<table style="width: 80%; padding: 20px;" border="2px" bordercolor="20b2aa">
 			<tr>

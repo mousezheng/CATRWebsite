@@ -1,4 +1,4 @@
-package com.xatu.servlet.page;
+package com.xatu.servlet.page2;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AvtivityServlet
+ * Servlet implementation class FindPasswordServlet
  */
-@WebServlet("/AvtivityServlet")
-public class AvtivityServlet extends HttpServlet {
+@WebServlet("/FindPasswordServlet")
+public class FindPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AvtivityServlet() {
+    public FindPasswordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

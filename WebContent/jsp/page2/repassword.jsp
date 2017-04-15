@@ -30,7 +30,7 @@
 		<jsp:include page="../part/head.jsp"></jsp:include>
 	</div>
 	<div style="width: 100%; padding-bottom: 15%" align="center">
-		<form name="form1" action="Register" method="post">
+		<form name="form1" action="RepasswordServlet" method="post">
 			<table style="border-collapse: separate; border-spacing: 40px; font-size: 20px;">
 				<tr>
 					<td>原始密码</td>
@@ -41,7 +41,7 @@
 				<tr>
 					<td>新密码：</td>
 					<td>
-						<input type="text" name="new_password" id="new_password" />
+						<input type="password" name="new_password" id="new_password" />
 					</td>
 				</tr>
 				<tr>

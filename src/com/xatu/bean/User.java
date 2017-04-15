@@ -15,11 +15,20 @@ public class User {
 	private String name; // 真实姓名
 	private String sex; // 性别
 	private String email; // 电子邮箱
-	private String adress; // 地址
+	private String address; // 地址
 	private String qqNum; // qq号
 	private String photo; // 照片
 	private String describe; // 描述
 	private int age; // 年龄
+	private String birthday;
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 
 	public int getId() {
 		return id;
@@ -77,12 +86,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String adress) {
+		this.address = adress;
 	}
 
 	public String getQqNum() {

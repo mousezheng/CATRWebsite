@@ -11,6 +11,10 @@ public class Activity {
 	private int id;
 	private String name; // 名称
 	private int number; // 多日游个数
+	private String[] places;
+	private int prices;
+	private String imageFile;
+	private String info;
 	private String one; // 1
 	private String two; // 2
 	private String three; // 3
@@ -18,6 +22,38 @@ public class Activity {
 	private String five; // 5
 	private String six; // 6
 	private String seven; // 7
+
+	public int getPrices() {
+		return prices;
+	}
+
+	public void setPrices(int prices) {
+		this.prices = prices;
+	}
+
+	public String getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(String imageFile) {
+		this.imageFile = imageFile;
+	}
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public String[] getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(String[] places) {
+		this.places = places;
+	}
 
 	public int getId() {
 		return id;

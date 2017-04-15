@@ -16,7 +16,7 @@
 	<!-- 	用户登录 -->
 	<!-- 	position:absolute;悬浮 -->
 	<div style="z-index: 2; width: 100%; height: 600px; background-color: 282828;" align="center">
-		<form name="form1" id="form1" action="LoginCheck" method="post" style="padding-top: 40px;">
+		<form name="form1" id="form1" action="LoginServlet" method="post" style="padding-top: 40px;">
 			<table align="center" style="font-size: 25px; color: EEEEEE; border-collapse: separate; border-spacing: 13px">
 				<tr>
 					<td class="glyphicon glyphicon-user">用户ID</td>
@@ -42,9 +42,9 @@
 				</tr>
 				<tr>
 					<td style="font-size: 30px">
-						<input style="width: 20px; height: 20px" type="radio" value="student" name="position" checked="true">
+						<input style="width: 20px; height: 20px" type="radio" value="user" name="position" checked="true">
 						用户 &nbsp
-						<input style="width: 20px; height: 20px" type="radio" value="teacher" name="position">
+						<input style="width: 20px; height: 20px" type="radio" value="manager" name="position">
 						管理员
 					</td>
 					<td></td>

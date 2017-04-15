@@ -13,7 +13,7 @@ public class Attraction {
 	private String describe;	//描述
 	private int seeNum;			//查看次数
 	private int queryNum;		//浏览次数
-	private String imgFile;		//图片文件路径
+	private String[] imgFile;		//图片文件路径
 	private String address;		//地址
 	private int ticketPrices;	//票价
 
@@ -57,11 +57,11 @@ public class Attraction {
 		this.queryNum = queryNum;
 	}
 
-	public String getImgFile() {
+	public String[] getImgFile() {
 		return imgFile;
 	}
 
-	public void setImgFile(String imgFile) {
+	public void setImgFile(String[] imgFile) {
 		this.imgFile = imgFile;
 	}
 

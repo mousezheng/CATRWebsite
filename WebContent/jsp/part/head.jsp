@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 <!--  <script src="jquery/jquery.min.js"></script> -->
- <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		for (var i = 0; i < 100; i++) {
 			$("#strong").fadeOut();
@@ -59,33 +59,35 @@
 		<div id="navbar" style="width: 60%">
 			<ul class="nav navbar-nav">
 				<li class="active">
-					<a href="jsp/page/tourist_attractions.jsp">旅游景点</a>
+					<a href="AttractionsServlet">旅游景点</a>
 				</li>
 				<li>
-					<a href="jsp/page/car_rental_service.jsp">租车服务</a>
+					<a href="CarServiceServlet">租车服务</a>
 				</li>
 				<li>
-					<a href="jsp/page/hotel_reservation.jsp">酒店预订</a>
+					<a href="HotelServlet">酒店预订</a>
 				</li>
 				<li>
-					<a href="jsp/page/three_day_swim.jsp">
-						<strong id="strong"><font color="#ff2343">❤</font></strong>
+					<a href="ActivityServlet">
+						<strong id="strong">
+							<font color="#ff2343">❤</font>
+						</strong>
 						多日游
 					</a>
 				</li>
 				<li>
-					<a href="jsp/page/message_board.jsp">留言板</a>
+					<a href="MessageServlet">留言板</a>
 				</li>
-				<c:if test="${!empty(session.username)}">
+				<c:if test="${!empty(username)}">
 					<li>
-						<a href="jsp/page/personal_information.jsp">个人信息</a>
+						<a href="UserInfoServlet">个人信息</a>
 					</li>
 				</c:if>
 			</ul>
 		</div>
 		<div id="navbar" style="width: 200px; float: right;" align="center">
 			<c:choose>
-				<c:when test="${empty(session.username)}">
+				<c:when test="${empty(username)}">
 
 					<ul class="nav navbar-nav">
 						<li>
@@ -97,13 +99,17 @@
 					</ul>
 
 				</c:when>
-				<c:when test="${!empty(session.username)}">
+				<c:when test="${!empty(username)}">
 					<ul class="nav navbar-nav">
 						<li>
-							<a href="">deng陆</a>
+							<%-- 						<img alt="头像" src="${head_image}"> --%>
+							<a href="#">
+								<img alt="头像" src="resources/head_img/head_1.jpg" width="30px" height="30px" style="border-radius: 5px">
+								<div  style="font-size: 10px;float:right;width: 50px;padding-top: 5px" align="center">${username}</div>
+							</a>
 						</li>
 						<li>
-							<a href="">注册</a>
+							<a href="#">退出</a>
 						</li>
 					</ul>
 				</c:when>
