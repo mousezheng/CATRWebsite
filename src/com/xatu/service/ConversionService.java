@@ -135,7 +135,11 @@ public class ConversionService {
 		tempUser.setQqNum(temp[8]);
 		tempUser.setPhoto(temp[9]);
 		tempUser.setDescribe(temp[10]);
-		tempUser.setAge(Integer.parseInt(temp[11]));
+		if (temp[11] == null) {
+			tempUser.setAge(0);
+		} else {
+			tempUser.setAge(Integer.parseInt(temp[11]));
+		}
 		tempUser.setBirthday(temp[12]);
 		System.out.println(tempUser.getId());
 		return tempUser;

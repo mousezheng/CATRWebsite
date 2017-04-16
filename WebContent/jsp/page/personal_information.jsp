@@ -88,7 +88,7 @@
 					<td colspan="3" style="font-size: 30px">
 						<strong>${user.userName}</strong>
 						<a href="jsp/page2/repassword.jsp" style="font-size: 18px">修改密码</a>
-						<img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px">
+						<a href="jsp/page/chage_info.jsp"><img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px"></a>
 						<img alt="保存按钮" src="resources/save.gif" style="float: right; margin-right: 20px" width="40px" height="40px" onclick="submit_form();">
 					</td>
 				</tr>

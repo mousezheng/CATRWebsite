@@ -102,10 +102,9 @@
 				<c:when test="${!empty(username)}">
 					<ul class="nav navbar-nav">
 						<li>
-							<%-- 						<img alt="头像" src="${head_image}"> --%>
-							<a href="#">
-								<img alt="头像" src="resources/user_head_img/head_${id}.jpg" width="30px" height="30px" style="border-radius: 5px">
-								<div  style="font-size: 10px;float:right;width: 50px;padding-top: 5px" align="center">${username}</div>
+							<a href="UserInfoServlet">
+								<img alt="头像" src="resources/user_head_img/head_${id}.jpg" width="30px" height="30px" style="border-radius: 5px"/>
+								<div style="font-size: 10px; float: right; width: 50px; padding-top: 5px" align="center">${username}</div>
 							</a>
 						</li>
 						<li>

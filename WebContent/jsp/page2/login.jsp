@@ -43,7 +43,7 @@
 				<tr>
 					<td style="font-size: 30px">
 						<input style="width: 20px; height: 20px" type="radio" value="user" name="position" checked="true">
-						用户 &nbsp
+						用户 &nbsp;
 						<input style="width: 20px; height: 20px" type="radio" value="manager" name="position">
 						管理员
 					</td>
