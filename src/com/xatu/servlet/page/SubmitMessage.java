@@ -44,7 +44,7 @@ public class SubmitMessage extends HttpServlet {
 					"'" + time + "'"};
 			String heads[] = { "id", "user_id", "content", "agree_num", "disagree_num", "time" };
 			if (operation.insert(null, strs, heads, "tb_message")) {
-				response.sendRedirect("MessageServlet");
+				response.sendRedirect("MessageServlet?sign=1");
 			} else {
 				Jump.jumpToFail(response, "ÁôÑÔ³ö´íÁË£¬( ¨‹-¨‹ )£¬£¬ÇëÖØÊÔ£¬", "ÁôÑÔ³ö´í");
 			}

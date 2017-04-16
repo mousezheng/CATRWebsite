@@ -32,7 +32,7 @@ public class MessageServlet extends HttpServlet {
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
 		int num = 0;
-		List<Message> messages = null;  
+		List<Message> messages = null;
 		String[] tableHead = { "tb_message.id", "tb_user.user_name", "content", "agree_num", "disagree_num", "time",
 				"tb_message.address", "tb_message.user_id" };
 		String tableName = "tb_message";
@@ -42,7 +42,10 @@ public class MessageServlet extends HttpServlet {
 		session.setAttribute("messageList", messages);
 		num = messages.size() / 5;
 		// System.out.println( messages.size()+" "+num);
-		response.sendRedirect("jsp/page/message_board.jsp?" + "sum=" + num + "&now=0");
+		if (request.getParameter("sign") != null)
+			response.sendRedirect("jsp/page/message_board.jsp?" + "sum=" + num + "&now="+num);
+		else
+			response.sendRedirect("jsp/page/message_board.jsp?" + "sum=" + num + "&now=0");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
