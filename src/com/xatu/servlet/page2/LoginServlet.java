@@ -38,6 +38,8 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("用户登录验证通过");
 			response.sendRedirect("index.jsp"); // 跳转到用户登陆成功页面
 			session.setAttribute("username", name); // 设置用户session
+			String id = operation.getIdString("tb_user", "user_name", "id", name);
+			session.setAttribute("id", id); // 设置用户session
 		} else if (type.equals("manager") && operation.managerIsExist(name, password)) {
 			System.out.println("管理员验证通过");
 			response.sendRedirect("jsp/manage/manage.jsp"); // 跳转到管理员页面

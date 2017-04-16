@@ -137,6 +137,7 @@ public class ConversionService {
 		tempUser.setDescribe(temp[10]);
 		tempUser.setAge(Integer.parseInt(temp[11]));
 		tempUser.setBirthday(temp[12]);
+		System.out.println(tempUser.getId());
 		return tempUser;
 	}
 

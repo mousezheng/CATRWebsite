@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -7,10 +8,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="kiben" content="no-cache">
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>个人信息</title>
 <script src="jquery/jquery.min.js"></script>
+<!-- <script src="jsp/page/js/set_image_preview.js"></script> -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		for (var i = 0; i < 100; i++) {
@@ -18,35 +22,42 @@
 			$("#strong").fadeIn();
 		}
 	});
-	
+
 	//正则表达式方法获取get
- 	function GetQueryString(name)
- 	{
- 	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
- 	     var r = window.location.search.substr(1).match(reg);
- 	     if(r!=null)return  unescape(r[2]); return null;
- 	}
- 	
- 	function topone(){
+	function GetQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null)
+			return unescape(r[2]);
+		return null;
+	}
+
+	function topone() {
 		var now = parseInt(GetQueryString("now"));
 		var sum = parseInt(GetQueryString("sum"));
- 		if( now > 0){
- 			now = now - 1;
- 			window.location.href="jsp/page/tourist_attractions.jsp?sum="+sum+"&now="+now;
- 		}else{
- 			alert("已经是首页无法跳转上一页！");
- 		}
- 	}
- 	function underone(){
- 		var now = parseInt(GetQueryString("now"));
+		if (now > 0) {
+			now = now - 1;
+			window.location.href = "jsp/page/tourist_attractions.jsp?sum="
+					+ sum + "&now=" + now;
+		} else {
+			alert("已经是首页无法跳转上一页！");
+		}
+	}
+	function underone() {
+		var now = parseInt(GetQueryString("now"));
 		var sum = parseInt(GetQueryString("sum"));
- 		if( sum > now){
- 			now = now + 1;
- 			window.location.href="jsp/page/tourist_attractions.jsp?sum="+sum+"&now="+now;
- 		}else{
- 			alert("已经是首页无法跳转上一页！");
- 		}
- 	}
+		if (sum > now) {
+			now = now + 1;
+			window.location.href = "jsp/page/tourist_attractions.jsp?sum="
+					+ sum + "&now=" + now;
+		} else {
+			alert("已经是首页无法跳转上一页！");
+		}
+	}
+
+	function submit_form() {
+		document.getElementById("form1").submit();
+	}
 </script>
 <style type="text/css">
 .item {
@@ -66,34 +77,37 @@
 	</div>
 
 	<div align="center">
-		<table width="80%" style="margin-top: 30px; font-size: 20px">
-			<tr>
-				<td rowspan="4" align="center" style="padding: 20px" width="100px">
-					<img alt="头像" src="resources/user_head_img/head_${user.id}.jpg" width="200px" ;height="200px" class="box">
-					<br />
-					<button style="width: 200px; border-radius: 10px">修改头像</button>
-				</td>
-				<td colspan="3" style="font-size: 30px">
-					<strong>${user.userName}</strong>
-					<a href="jsp/page2/repassword.jsp" style="font-size: 18px">修改密码</a>
-					<img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px">
-				</td>
-			</tr>
-			<tr>
-				<td>真实姓名：${user.name}</td>
-				<td>性别：${user.sex}</td>
-				<td>年龄：${user.age }</td>
-			</tr>
-			<tr>
-				<td>住址：${user.address }</td>
-				<td>联系电话：${user.phone }</td>
-				<td>出生年月：${user.birthday}</td>
-			</tr>
-			<tr>
-				<td>Email地址：${user.email}</td>
-				<td colspan="2">个性签名：${user.describe}</td>
-			</tr>
-		</table>
+		<form id="form1" method="post" action="ChageUserInfo" enctype="multipart/form-data">
+			<table width="80%" style="margin-top: 30px; font-size: 20px">
+				<tr>
+					<td rowspan="4" align="center" style="padding: 20px" width="100px">
+						<img alt="头像" src="resources/user_head_img/head_${user.id}.jpg" width="200px" ;height="200px" class="box">
+						<br />
+						<input type="file" id="headfile" name="headfile" style="width: 200px; border-radius: 10px" value="修改头像" />
+					</td>
+					<td colspan="3" style="font-size: 30px">
+						<strong>${user.userName}</strong>
+						<a href="jsp/page2/repassword.jsp" style="font-size: 18px">修改密码</a>
+						<img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px">
+						<img alt="保存按钮" src="resources/save.gif" style="float: right; margin-right: 20px" width="40px" height="40px" onclick="submit_form();">
+					</td>
+				</tr>
+				<tr>
+					<td>真实姓名：${user.name}</td>
+					<td>性别：${user.sex}</td>
+					<td>年龄：${user.age }</td>
+				</tr>
+				<tr>
+					<td>住址：${user.address }</td>
+					<td>联系电话：${user.phone }</td>
+					<td>出生年月：${user.birthday}</td>
+				</tr>
+				<tr>
+					<td>Email地址：${user.email}</td>
+					<td colspan="2">个性签名：${user.describe}</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 	<div align="center">
 		<table width="80%" style="margin-top: 30px; font-size: 20px">

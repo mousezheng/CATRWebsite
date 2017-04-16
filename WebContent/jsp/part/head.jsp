@@ -104,12 +104,12 @@
 						<li>
 							<%-- 						<img alt="头像" src="${head_image}"> --%>
 							<a href="#">
-								<img alt="头像" src="resources/head_img/head_1.jpg" width="30px" height="30px" style="border-radius: 5px">
+								<img alt="头像" src="resources/user_head_img/head_${id}.jpg" width="30px" height="30px" style="border-radius: 5px">
 								<div  style="font-size: 10px;float:right;width: 50px;padding-top: 5px" align="center">${username}</div>
 							</a>
 						</li>
 						<li>
-							<a href="#">退出</a>
+							<a href="ExitAndClean">退出</a>
 						</li>
 					</ul>
 				</c:when>

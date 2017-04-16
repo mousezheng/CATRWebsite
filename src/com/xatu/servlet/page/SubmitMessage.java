@@ -31,6 +31,7 @@ public class SubmitMessage extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("username");
+		
 		DBOperation operation = DBOperation.getMyDB();
 		if (name == null || name.equals("")) {
 			Jump.jumpToFail(response, "用户还未登录无法留言，", "无法提交留言，请先登录");

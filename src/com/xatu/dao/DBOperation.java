@@ -233,6 +233,7 @@ public class DBOperation {
 					strList[i] = rs.getString(i + 1);
 				}
 			}
+//			System.out.println("==============" + strList[0]);
 			System.out.println(tableName + "  表查询完毕！");
 		} catch (SQLException e) {
 			System.out.println(tableName + "  表查询出问题了!");
@@ -293,7 +294,7 @@ public class DBOperation {
 	}
 
 	public String getIdString(String tableName, String inputHead, String outHead, String inputText) {
-		String sql = "select " + outHead + " from " + tableName + " where " + inputHead + "='" + inputText+"'";
+		String sql = "select " + outHead + " from " + tableName + " where " + inputHead + "='" + inputText + "'";
 		String out = null;
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql);
@@ -302,7 +303,7 @@ public class DBOperation {
 			// 解析查找结果
 			if (rs.next()) {
 				out = rs.getString(1);
-				System.out.println("==========="+out);
+				// System.out.println(""+out);
 				System.out.println("getIdString" + "  解析完毕！");
 			} else {
 				System.out.println("没查到！");
