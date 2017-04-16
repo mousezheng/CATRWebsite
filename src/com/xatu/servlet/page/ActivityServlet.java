@@ -29,13 +29,17 @@ public class ActivityServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setCharacterEncoding("GBK");
-		String[] tableHead = { "id", "name", "number","prices","info","image_file", "one", "two", "three", "four", "five", "six", "seven" };
-		String tableName = "td_activity";
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
-		List<Activity> activitys = ConversionService.object2Activity(operation.select(tableHead, tableName),
-				getServletContext());
-		session.setAttribute("activityList", activitys);
+		// ∑¿÷π÷ÿ∏¥º”‘ÿ
+		if (session.getAttribute("activityList") == null) {
+			String[] tableHead = { "id", "name", "number", "prices", "info", "image_file", "one", "two", "three",
+					"four", "five", "six", "seven" };
+			String tableName = "td_activity";
+			List<Activity> activitys = ConversionService.object2Activity(operation.select(tableHead, tableName),
+					getServletContext());
+			session.setAttribute("activityList", activitys);
+		}
 		response.sendRedirect("jsp/page/three_day_swim.jsp");
 	}
 

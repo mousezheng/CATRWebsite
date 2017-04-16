@@ -163,7 +163,6 @@ public class DBOperation {
 		sql.append(" from " + tableName);
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
-			System.out.println(sql.toString());
 			ResultSet rs = statement.executeQuery();
 			System.out.println("sql执行完毕");
 			// 解析查找结果
@@ -223,7 +222,7 @@ public class DBOperation {
 			sql.append("," + tableHead[i]);
 		}
 		sql.append(" from " + tableName);
-		sql.append("  where user_name='" + whereStr + "'");
+		sql.append("  where " + whereStr + "");
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
 			ResultSet rs = statement.executeQuery();
@@ -248,18 +247,100 @@ public class DBOperation {
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
-			if (rs.next()) {  
+			if (rs.next()) {
 				for (int i = 0; i < 4; i++) {
 					name[i] = rs.getString(1);
 					rs.next();
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println("select4DESC() "+"出错！");
+			System.out.println("select4DESC() " + "出错！");
 			e.printStackTrace();
 		}
-		
+
 		return name;
+	}
+
+	public List<String[]> selectLike(String[] tableHead, String tableName, String string) {
+		List<String[]> strList = new ArrayList<>();
+		// 构建sql语句
+		StringBuffer sql = new StringBuffer("select ");
+		sql.append(tableHead[0]);
+		for (int i = 1; i < tableHead.length; i++) {
+			sql.append("," + tableHead[i]);
+		}
+		sql.append(" from " + tableName);
+		sql.append("  where " + string);
+		try {
+			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
+			System.out.println(sql.toString());
+			ResultSet rs = statement.executeQuery();
+			System.out.println("sql执行完毕");
+			// 解析查找结果
+			while (rs.next()) {
+				String temp[] = new String[tableHead.length];
+				for (int i = 0; i < temp.length; i++) {
+					temp[i] = rs.getString(i + 1);
+				}
+				strList.add(temp);
+			}
+			System.out.println(tableName + "  表查询完毕！");
+		} catch (SQLException e) {
+			System.out.println(tableName + "  表查询出问题了!");
+			e.printStackTrace();
+		}
+		return strList;
+	}
+
+	public String getIdString(String tableName, String inputHead, String outHead, String inputText) {
+		String sql = "select " + outHead + " from " + tableName + " where " + inputHead + "='" + inputText+"'";
+		String out = null;
+		try {
+			PreparedStatement statement = dbConn.prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			System.out.println("查询执行完毕");
+			// 解析查找结果
+			if (rs.next()) {
+				out = rs.getString(1);
+				System.out.println("==========="+out);
+				System.out.println("getIdString" + "  解析完毕！");
+			} else {
+				System.out.println("没查到！");
+			}
+		} catch (SQLException e) {
+			System.out.println(tableName + "  表查询出问题了!");
+			e.printStackTrace();
+		}
+		return out;
+	}
+
+	public boolean insert(Object object, String[] strs, String[] tableHeads, String tableName) {
+		StringBuffer sql = new StringBuffer("insert into " + tableName + "(");
+		sql.append(tableHeads[0]);
+		for (int i = 1; i < tableHeads.length; i++) {
+			sql.append("," + tableHeads[i]);
+		}
+		sql.append(") ");
+		sql.append("values(");
+		sql.append(strs[0]);
+		for (int i = 1; i < strs.length; i++) {
+			sql.append("," + strs[i]);
+		}
+		sql.append(") ");
+
+		try {
+			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
+			System.out.println(sql);
+			if (statement.executeUpdate() == 1) {
+				System.out.println("插入成功！");
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("insert 出错了！");
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 
 }

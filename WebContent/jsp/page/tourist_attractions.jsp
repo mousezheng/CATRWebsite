@@ -48,6 +48,8 @@
  			alert("已经是首页无法跳转上一页！");
  		}
  	}
+ 	
+
 </script>
 <style type="text/css">
 .item_image {
@@ -76,7 +78,7 @@
 }
 </style>
 </head>
-<body >
+<body>
 
 	<div style="height: 10%">
 		<jsp:include page="../part/head.jsp"></jsp:include>
@@ -104,7 +106,7 @@
 						<font size="2">${attraction.describe}</font>
 						<br />
 						<div style="width: 100%" align="right">
-							<a href="./jsp/page/detailed_info_page.jsp?id=${attraction.id}">
+							<a href="DetaiInfoServlet?id=${attraction.name}">
 								<button class="btn btn-lg btn-primary" style="padding: 5px">查看详情</button>
 							</a>
 							<a onclick="#">
@@ -121,7 +123,7 @@
 				<td colspan="2" align="center" style="padding-bottom: 100px">
 					<font size="4">
 						<a onclick="topone()">上一页</a>
-						&nbsp 第1页/共10页
+						&nbsp 第${param.now}页/共${param.sum}页
 						<a onclick="underone()">下一页</a>
 						&nbsp
 					</font>
@@ -129,11 +131,9 @@
 			</tr>
 		</table>
 		<div class="box" style="width: 20%; height: 480px; background-color: #EEEEEE; padding-top: 20px" align="center">
-			<form action="" style="background-color: #EEEEEE; padding-top: 20px; width: 100%">
-				<input type="text" width="70%" height="50px" placeholder="输入景点名称/相关位置" id="input_text">
-				<a href="https://www.baidu.com/">
-					<img alt="图标" src="resources/query.png" width="20%" height="50px" style="background-color: #EEEEEE;" />
-				</a>
+			<form id="form1" name="form1" action="QueryAttraction" style="background-color: #EEEEEE; padding-top: 20px; width: 100%" method="post">
+				<input style="color: #000000" type="text" width="70%" height="50px" placeholder="输入景点名称/相关位置" name="sign">
+				<input class="btn btn-lg btn-primary" type="submit" name="submit" id="submit" value="搜索">
 			</form>
 			<font size="5" color="#000000">
 				<strong>
@@ -145,19 +145,19 @@
 			</font>
 
 
-			<a href="">
+			<a href="DetaiInfoServlet?id=${nameStr[0]}">
 				<font size="6">top 1 : ${nameStr[0]}</font>
 			</a>
 			<hr style="height: 5px; border: none; border-top: 5px ridge green;" />
-			<a href="">
+			<a href="DetaiInfoServlet?id=${nameStr[1]}">
 				<font size="5">top 2 :${nameStr[1]}</font>
 			</a>
 			<hr style="height: 5px; border: none; border-top: 5px ridge green;" />
-			<a href="">
+			<a href="DetaiInfoServlet?id=${nameStr[2]}">
 				<font size="4">top 3 :${nameStr[2]}</font>
 			</a>
 			<hr style="height: 5px; border: none; border-top: 5px ridge green;" />
-			<a href="">
+			<a href="DetaiInfoServlet?id=${nameStr[3]}">
 				<font size="4">top 4 : ${nameStr[3]}</font>
 			</a>
 			<hr style="height: 5px; border: none; border-top: 5px ridge green;" />

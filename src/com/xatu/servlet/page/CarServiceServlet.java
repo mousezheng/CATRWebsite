@@ -29,14 +29,28 @@ public class CarServiceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
-		String[] tableHead = { "id", "time", "contact_phone", "name", "contact_name", "prices", "address" };
-		String tableName = "tb_car";
+
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
-		List<Car> cars = ConversionService.object2Car(operation.select(tableHead, tableName),
-				getServletContext());
+		// 防止重复加载
+		if (session.getAttribute("carList") == null) {
+			String[] tableHead = { "id", "time", "contact_phone", "name", "contact_name", "prices", "address" };
+			String tableName = "tb_car";
+			List<Car> cars = ConversionService.object2Car(operation.select(tableHead, tableName), getServletContext());
+			session.setAttribute("carList", cars);
+		}
+		/*
+		 * 2017年4月16日11:49:28 修复当直接点击酒店/租车页面时，无法正确显示目的地
+		 */
+		if (session.getAttribute("attractionList") == null) {
+			String[] tableHead1 = { "id", "name", "info", "see_num", "query_num", "img_file", "ticket_prices",
+					"address" };
+			String tableName1 = "tb_attractions";
+			List<Attraction> attractions = ConversionService.object2Attraction(operation.select(tableHead1, tableName1),
+					getServletContext());
 
-		session.setAttribute("carList", cars);
+			session.setAttribute("attractionList", attractions);
+		}
 		response.sendRedirect("jsp/page/car_rental_service.jsp");
 	}
 

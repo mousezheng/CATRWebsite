@@ -25,21 +25,29 @@ public class UserInfoServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@SuppressWarnings("unused")
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
-		String[] tableHead = { "id", "user_name", "password", "phone", "name", "sex", "email" ,"address","qq_num","photo","info","age","birthday"};
-		String tableName = "tb_user";
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
-		String name = (String) session.getAttribute("username");
-		if(name == null){
-			Jump.jumpToFail(response, "用户名为空,无法查看个人信息,", "用户名为空");
-		}else{
-			User user = ConversionService.object2User(operation.selectOne(tableHead, tableName,name), getServletContext());
-			session.setAttribute("user", user);
-			response.sendRedirect("jsp/page/personal_information.jsp");  
+		// 防止重复加载
+		if (session.getAttribute("user") == null) {
+			String[] tableHead = { "id", "user_name", "password", "phone", "name", "sex", "email", "address", "qq_num",
+					"photo", "info", "age", "birthday" };
+			String tableName = "tb_user";
+			String name = "user_name='" + (String) session.getAttribute("username")+"'";
+			if (name == null) {
+				Jump.jumpToFail(response, "用户名为空,无法查看个人信息,", "用户名为空");
+			} else {
+				User user = ConversionService.object2User(operation.selectOne(tableHead, tableName, name),
+						getServletContext());
+				session.setAttribute("user", user);
+
+			}
 		}
-		
+		response.sendRedirect("jsp/page/personal_information.jsp");
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

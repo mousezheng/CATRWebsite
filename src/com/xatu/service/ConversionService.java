@@ -108,12 +108,14 @@ public class ConversionService {
 			String[] temp = objectsList.get(i);
 			tempHotel.setId(Integer.parseInt(temp[0]));
 			tempHotel.setUserName(temp[1]);
+			// System.out.println(temp[1]);
 			tempHotel.setContent(temp[2]);
 			tempHotel.setAgreeNum(Integer.parseInt(temp[3]));
 			tempHotel.setDisagreeNum(Integer.parseInt(temp[4]));
 			tempHotel.setTime(temp[5]);
 			// tempHotel.setNum(Integer.parseInt(temp[6]));
 			tempHotel.setAddress(temp[6]);
+			tempHotel.setUserId(temp[7]);
 			messages.add(tempHotel);
 		}
 		return messages;
@@ -136,5 +138,20 @@ public class ConversionService {
 		tempUser.setAge(Integer.parseInt(temp[11]));
 		tempUser.setBirthday(temp[12]);
 		return tempUser;
+	}
+
+	public static Attraction object2Attraction1(String[] objectsList, ServletContext sc) {
+		Attraction tempAttraction = new Attraction();
+		String[] temp = objectsList;
+		// ¸³Öµ
+		tempAttraction.setId(Integer.parseInt(temp[0]));
+		tempAttraction.setName(temp[1]);
+		tempAttraction.setDescribe(FileService.fileToString(temp[2], sc));
+		tempAttraction.setSeeNum(Integer.parseInt(temp[3]));
+		tempAttraction.setQueryNum(Integer.parseInt(temp[4]));
+		tempAttraction.setImgFile(FileService.getImageFile(temp[5]));
+		tempAttraction.setTicketPrices(Integer.parseInt(temp[6]));
+		tempAttraction.setAddress(temp[7]);
+		return tempAttraction;
 	}
 }

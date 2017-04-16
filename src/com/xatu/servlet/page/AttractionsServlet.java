@@ -29,21 +29,32 @@ public class AttractionsServlet extends HttpServlet {
 		super();
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
-		String[] tableHead = { "id", "name", "info", "see_num", "query_num", "img_file", "ticket_prices", "address" };
-		String tableName = "tb_attractions";
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
-		List<Attraction> attractions = ConversionService.object2Attraction(operation.select(tableHead, tableName),
-				getServletContext());
-
-		session.setAttribute("attractionList", attractions);
-		String[] nameStr = operation.select4DESC();
-		session.setAttribute("nameStr", nameStr);  
-		int num = attractions.size()/5;
-		response.sendRedirect("jsp/page/tourist_attractions.jsp?sum="+num+"&now=0");
+		int num = 0;
+		List<Attraction> attractions = null;
+		String[] nameStr = null;
+//		// ∑¿÷π÷ÿ∏¥º”‘ÿ
+//		if (session.getAttribute("attractionList") == null || session.getAttribute("nameStr") == null) {
+			String[] tableHead = { "id", "name", "info", "see_num", "query_num", "img_file", "ticket_prices",
+					"address" };
+			String tableName = "tb_attractions";
+			attractions = ConversionService.object2Attraction(operation.select(tableHead, tableName),
+					getServletContext());
+			session.setAttribute("attractionList", attractions);
+			nameStr = operation.select4DESC();
+			session.setAttribute("nameStr", nameStr);
+		// } else {
+		// attractions = (List<Attraction>)
+		// session.getAttribute("attractionList");
+		// nameStr = (String[]) session.getAttribute("nameStr");
+		// }
+		num = attractions.size() / 5;
+		response.sendRedirect("jsp/page/tourist_attractions.jsp?sum=" + num + "&now=0");
 		// ≤‚ ‘ π”√
 		// String str = FileService.fileToString("resources/¥Û—„À˛/describe.txt",
 		// getServletContext());

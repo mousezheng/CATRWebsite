@@ -93,7 +93,7 @@
 			<table style="width: 80%; padding: 20px; margin-bottom: 20px" border="2px" bordercolor="20b2aa">
 				<tr>
 					<td rowspan="3" align="center" style="padding: 20px" width="100px">
-						<img alt="头像" src="resources/user_head_img/head_${message.id}.jpg" width="100px" ;height="100px" class="box">
+						<img alt="头像" src="resources/user_head_img/head_${message.userId}.jpg" width="100px" ;height="100px" class="box">
 						<hr style="padding: 5px; margin: 5px" />
 						<font size="4" color="8a2be2">${message.userName}</font>
 					</td>
@@ -128,7 +128,7 @@
 				<td colspan="2" align="center" height="100px">
 					<font size="4">
 						<a onclick="topone()">上一页</a>
-						&nbsp 第1页/共10页
+						&nbsp 第${param.now}页/共${param.sum}页
 						<a onclick="underone()">下一页</a>
 						&nbsp
 					</font>
@@ -137,7 +137,7 @@
 		</table>
 	</div>
 
-	<form id="form1" action="">
+	<form id="form1" action="SubmitMessage">
 		<div id=url_info align="center">
 			<table>
 				<thead>
@@ -157,7 +157,6 @@
 				</tr>
 				<tr align="center">
 					<td style="padding: 10px">
-
 						<input class="btn btn-lg btn-primary" type="submit" value="留言">
 					</td>
 					<td style="padding: 10px">

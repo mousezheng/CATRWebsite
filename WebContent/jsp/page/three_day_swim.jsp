@@ -51,15 +51,25 @@
 			<strong style="font-size: 50px; color: #cc8822">多日游 活动</strong>
 			<hr />
 		</div>
-		<div style="width: 80%;">
+		<div style="width: 80%;z-index: 1">
 			<table>
 				<tr>
 					<td style="font-size: 30px; padding-left: 20px" width="250px">活动天数分类：</td>
-					<td class="item">三日游</td>
-					<td class="item">四日游</td>
-					<td class="item">五日游</td>
-					<td class="item">六日游</td>
-					<td class="item">七日游
+					<td class="item">
+						<a href="jsp/page/three_day_swim.jsp?num=3">三日游</a>
+					</td>
+					<td class="item">
+						<a href="jsp/page/three_day_swim.jsp?num=4">四日游</a>
+					</td>
+					<td class="item">
+						<a href="jsp/page/three_day_swim.jsp?num=5">五日游</a>
+					</td>
+					<td class="item">
+						<a href="jsp/page/three_day_swim.jsp?num=6">六日游</a>
+					</td>
+					<td class="item">
+						<a href="jsp/page/three_day_swim.jsp?num=7">七日游</a>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="6">
@@ -67,45 +77,46 @@
 					</td>
 				</tr>
 				<c:forEach items="${activityList}" var="activity">
-
-					<tr>
-						<td width="300px" align="center">
-							<img alt="景点图片" src="${activity.imageFile}/image.jpg" width="200px" height="200px" class="item_image" style="border-radius: 10px">
-						</td>
-						<td colspan="5">
-							<div>
-								<font size="5">${activity.name}</font>
-								<font style="float: right; padding-right: 20px">
-									单人票活动价：
-									<strong>${activity.prices}元</strong>
-								</font>
-								<br />
-								<font size="5">旅游路线：</font>
-								<font size="4">
-									<strong style="color: #ff0000">火车站</strong>
-									<c:forEach items="${activity.places}" var="places">
+					<c:if test="${activity.number==param.num || empty param.num}">
+						<tr>
+							<td width="300px" align="center">
+								<img alt="景点图片" src="${activity.imageFile}/image.jpg" width="200px" height="200px" class="item_image" style="border-radius: 10px">
+							</td>
+							<td colspan="5">
+								<div>
+									<font size="5">${activity.name}</font>
+									<font style="float: right; padding-right: 20px">
+										单人票活动价：
+										<strong>${activity.prices}元</strong>
+									</font>
+									<br />
+									<font size="5">旅游路线：</font>
+									<font size="4">
+										<strong style="color: #ff0000">火车站</strong>
+										<c:forEach items="${activity.places}" var="places">
 								&nbsp;&gt;&nbsp;${places}
 								</c:forEach>
-									<br />
-									<font size="5">详情：</font>
-									<font size="3">
-										本次活动是属于：
-										<font size="5" color="#FF0000">${activity.number}日游活动</font>
-										${activity.info}
-									</font>
-									<div style="width: 100%" align="right">
-										<a href="./jsp/page/detailed_info_page.jsp">
-											<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button>
-										</a>
-									</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="6">
-							<hr />
-						</td>
-					</tr>
+										<br />
+										<font size="5">详情：</font>
+										<font size="3">
+											本次活动是属于：
+											<font size="5" color="#FF0000">${activity.number}日游活动</font>
+											${activity.info}
+										</font>
+										<div style="width: 100%" align="right">
+											<a href="./jsp/page/detailed_info_page.jsp">
+												<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button>
+											</a>
+										</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6">
+								<hr />
+							</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 		</div>

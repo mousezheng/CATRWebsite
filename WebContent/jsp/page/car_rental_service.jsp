@@ -14,11 +14,25 @@
 <script src="jquery/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		if ("${param.id}" != "") {
+			$(".selector").val("${param.id}");
+		} else {
+			$(".selector").val("*");
+		}
 		for (var i = 0; i < 100; i++) {
 			$("#strong").fadeOut();
 			$("#strong").fadeIn();
 		}
 	});
+	function jump() {
+		// 		alert($(".selector").val());
+		if ($(".selector").val() == "*") {
+			window.location.href = "jsp/page/car_rental_service.jsp";
+		} else {
+			window.location.href = "jsp/page/car_rental_service.jsp?id="
+					+ $(".selector").val();
+		}
+	}
 </script>
 </head>
 <body>
@@ -30,7 +44,7 @@
 		<hr />
 	</div>
 	<font size="4" style="margin-left: 30px">目的地：</font>
-	<select id="sex" name="sex" style="width: 300px; height: 30px; margin: 10px">
+	<select class="selector" name="sex" style="width: 300px; height: 30px; margin: 10px" onchange="jump()">
 		<option value="*">请选择目的地</option>
 		<c:forEach items="${attractionList}" var="attraction">
 			<option value="${attraction.name}">${attraction.name}</option>
@@ -40,21 +54,23 @@
 		<form action="">
 			<table style="border-collapse: separate; border-spacing: 0px 10px; width: 100%; float: left; padding: 50px; padding-top: 0">
 				<c:forEach items="${carList}" var="car">
-					<tr>
-						<td width="100%-200px" style="background-color: #eeeeee; padding: 20px; padding-right: 50px;">
-							<font size="5">${car.name}</font>
-							<br />
-							<font size="3">价钱：￥${car.prices}元</font>
-							<br />
-							<font size="3">联系人：${car.contactName}</font>
-							<br />
-							<font size="3">联系电话：${car.contactPhone}</font>
-							<input class="btn btn-lg btn-primary" type="button" value="预定" style="float: right; width: 100px" />
-						</td>
-						<td width="100px">
-							<img alt="景点图片" src="resources/${car.address}/image.jpg" width="160px" height="160px">
-						</td>
-					</tr>
+					<c:if test="${car.address==param.id  || empty param.id}">
+						<tr>
+							<td width="100%-200px" style="background-color: #eeeeee; padding: 20px; padding-right: 50px;">
+								<font size="5">${car.name}</font>
+								<br />
+								<font size="3">价钱：￥${car.prices}元</font>
+								<br />
+								<font size="3">联系人：${car.contactName}</font>
+								<br />
+								<font size="3">联系电话：${car.contactPhone}</font>
+								<input class="btn btn-lg btn-primary" type="button" value="预定" style="float: right; width: 100px" />
+							</td>
+							<td width="100px">
+								<img alt="景点图片" src="resources/${car.address}/image.jpg" width="160px" height="160px">
+							</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 		</form>

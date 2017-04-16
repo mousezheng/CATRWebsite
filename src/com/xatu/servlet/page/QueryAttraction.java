@@ -13,30 +13,42 @@ import javax.servlet.http.HttpSession;
 import com.xatu.bean.Attraction;
 import com.xatu.dao.DBOperation;
 import com.xatu.service.ConversionService;
+import com.xatu.util.StringChage;
 
 /**
- * 景点信息服务
+ * 景点搜索业务处理
  */
-@WebServlet("/DetaiInfoServlet")
-public class DetaiInfoServlet extends HttpServlet {
+@WebServlet("/QueryAttraction")
+public class QueryAttraction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public DetaiInfoServlet() {
+	public QueryAttraction() {
 		super();
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
-		String id = request.getParameter("id");
+		String sign = StringChage.encodingChage(request.getParameter("sign"));
+		System.out.println(sign);
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
+		int num = 0;
+		List<Attraction> attractions = null;
+		String[] nameStr = null;
+
 		String[] tableHead = { "id", "name", "info", "see_num", "query_num", "img_file", "ticket_prices", "address" };
 		String tableName = "tb_attractions";
-		Attraction attraction = ConversionService
-				.object2Attraction1(operation.selectOne(tableHead, tableName, "name='" + id+"'"), getServletContext());
-		session.setAttribute("attraction", attraction);
-		response.sendRedirect("jsp/page/detailed_info_page.jsp");
+		attractions = ConversionService.object2Attraction(
+				operation.selectLike(tableHead, tableName,
+						"address like '%" + sign + "%' or name like '%" + sign + "%' or info like '%" + sign + "%'"),
+				getServletContext());
+		session.setAttribute("attractionList", attractions);
+		nameStr = operation.select4DESC();
+		session.setAttribute("nameStr", nameStr);   
+		num = attractions.size() / 5;
+		response.sendRedirect("jsp/page/tourist_attractions.jsp?sum=" + num + "&now=0");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

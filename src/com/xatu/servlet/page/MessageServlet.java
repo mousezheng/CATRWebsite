@@ -25,18 +25,24 @@ public class MessageServlet extends HttpServlet {
 		super();
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
-		String[] tableHead = { "tb_message.id", "tb_user.user_name", "content", "agree_num", "disagree_num", "time", "tb_message.address" };
-		String tableName = "tb_message";
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
-		List<Message> messages =  ConversionService.object2Message(operation.selectWhere(tableHead, tableName,"tb_user","tb_user.id=tb_message.user_id"), getServletContext());
-	
+		int num = 0;
+		List<Message> messages = null;  
+		String[] tableHead = { "tb_message.id", "tb_user.user_name", "content", "agree_num", "disagree_num", "time",
+				"tb_message.address", "tb_message.user_id" };
+		String tableName = "tb_message";
+		messages = ConversionService.object2Message(operation.selectWhere(tableHead, tableName, "tb_user",
+				"tb_user.id=tb_message.user_id  order by tb_message.id"), getServletContext());
+
 		session.setAttribute("messageList", messages);
-		int num = messages.size()/10;
-		response.sendRedirect("jsp/page/message_board.jsp?"+"sum="+num+"&now=0");
+		num = messages.size() / 5;
+		// System.out.println( messages.size()+" "+num);
+		response.sendRedirect("jsp/page/message_board.jsp?" + "sum=" + num + "&now=0");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
