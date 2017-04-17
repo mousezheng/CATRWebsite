@@ -95,7 +95,7 @@ public class ChageUserInfo extends HttpServlet {
 		String realPath = path;
 		// String realPath = getServletContext().getRealPath("/") + "images";
 		File fileupload = new File(realPath);
-		System.out.println(realPath);
+		// System.out.println(realPath);
 		if (!fileupload.exists()) {
 			fileupload.mkdir();
 		}
@@ -114,7 +114,7 @@ public class ChageUserInfo extends HttpServlet {
 
 		session.invalidate();
 		Jump.jumpToSuccess(response, "上传成功了", "成功");
-
+		// response.sendRedirect("UserInfoServlet");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

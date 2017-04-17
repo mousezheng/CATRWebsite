@@ -31,8 +31,8 @@ public class UserInfoServlet extends HttpServlet {
 		response.setCharacterEncoding("GBK");
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
-		// ∑¿÷π÷ÿ∏¥º”‘ÿ
-		if (session.getAttribute("user") == null) {
+//		// ∑¿÷π÷ÿ∏¥º”‘ÿ
+//		if (session.getAttribute("user") == null) {
 			String[] tableHead = { "id", "user_name", "password", "phone", "name", "sex", "email", "address", "qq_num",
 					"photo", "info", "age", "birthday" };
 			String tableName = "tb_user";
@@ -45,7 +45,7 @@ public class UserInfoServlet extends HttpServlet {
 				session.setAttribute("user", user);
 
 			}
-		}
+//		}
 		response.sendRedirect("jsp/page/personal_information.jsp");
 
 	}

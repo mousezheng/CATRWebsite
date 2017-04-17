@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.xatu.util.StringChage;
+
 /**
  * 数据库操作
  * 
@@ -46,6 +48,13 @@ public class DBOperation {
 		}
 	}
 
+	/**
+	 * 检测用户是否存在，通过用户名密码进行检测 用户名可以是手机号码，也可以是用户名
+	 * 
+	 * @param name
+	 * @param password
+	 * @return
+	 */
 	public boolean userIsExist(String name, String password) {
 		String sqlStr = "select id from tb_user where(user_name = ? or phone = ? and password = ?)";
 		try {
@@ -69,6 +78,13 @@ public class DBOperation {
 		return false;
 	}
 
+	/**
+	 * 管理员是否存在
+	 * 
+	 * @param name
+	 * @param password
+	 * @return
+	 */
 	public boolean managerIsExist(String name, String password) {
 		String sqlStr = "select id from tb_manage where(name = ? and password = ?)";
 		try {
@@ -91,6 +107,13 @@ public class DBOperation {
 		return false;
 	}
 
+	/**
+	 * 判断电话号码是否存在 防止同一个用户注册两次
+	 * 
+	 * @param phone
+	 * @param name
+	 * @return
+	 */
 	public boolean phoneIsExist(String phone, String name) {
 		String sqlStr = "select id from tb_user where(phone = ? or user_name = ?)";
 		try {
@@ -113,6 +136,14 @@ public class DBOperation {
 		return false;
 	}
 
+	/**
+	 * 用户注册，由于部分信息是可为空的，所以单独设置注册函数
+	 * 
+	 * @param name
+	 * @param password
+	 * @param phone
+	 * @param headImgPath
+	 */
 	public void userRegistered(String name, String password, String phone, String headImgPath) {
 		String sqlStr = "insert into tb_user(id,user_name,password,phone,photo)  values(null,?,?,?,?)";
 		try {
@@ -129,6 +160,14 @@ public class DBOperation {
 		System.out.println(name + "注册成功！");
 	}
 
+	/**
+	 * 修改密码
+	 * 
+	 * @param name
+	 * @param password
+	 * @param newPassword
+	 * @return
+	 */
 	public boolean changePassword(String name, String password, String newPassword) {
 		if (this.userIsExist(name, password)) { // 密码输入正确
 			String sqlStr = "update tb_user set password = ? where user_name = ? and password = ?";
@@ -152,6 +191,13 @@ public class DBOperation {
 		return false;
 	}
 
+	/**
+	 * 检索信息，根据表头表明对信息进行检索
+	 * 
+	 * @param tableHead
+	 * @param tableName
+	 * @return
+	 */
 	public List<String[]> select(String[] tableHead, String tableName) {
 		List<String[]> strList = new ArrayList<>();
 		// 构建sql语句
@@ -181,6 +227,15 @@ public class DBOperation {
 		return strList;
 	}
 
+	/**
+	 * 根据条件索引数据，也支持多表查询
+	 * 
+	 * @param tableHead
+	 * @param tableName
+	 * @param tableName2
+	 * @param whereStr
+	 * @return
+	 */
 	public List<String[]> selectWhere(String[] tableHead, String tableName, String tableName2, String whereStr) {
 		List<String[]> strList = new ArrayList<>();
 		// 构建sql语句
@@ -190,7 +245,9 @@ public class DBOperation {
 			sql.append("," + tableHead[i]);
 		}
 		sql.append(" from " + tableName);
-		sql.append("," + tableName2);
+		if (tableName2 != null) {
+			sql.append("," + tableName2);
+		}
 		sql.append("  where " + whereStr);
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
@@ -213,6 +270,14 @@ public class DBOperation {
 		return strList;
 	}
 
+	/**
+	 * 索引一个，主要是为了信息查询，景点信息以及个人信息等
+	 * 
+	 * @param tableHead
+	 * @param tableName
+	 * @param whereStr
+	 * @return
+	 */
 	public String[] selectOne(String[] tableHead, String tableName, String whereStr) {
 		String[] strList = new String[tableHead.length];
 		// 构建sql语句
@@ -233,7 +298,7 @@ public class DBOperation {
 					strList[i] = rs.getString(i + 1);
 				}
 			}
-//			System.out.println("==============" + strList[0]);
+			// System.out.println("==============" + strList[0]);
 			System.out.println(tableName + "  表查询完毕！");
 		} catch (SQLException e) {
 			System.out.println(tableName + "  表查询出问题了!");
@@ -242,6 +307,11 @@ public class DBOperation {
 		return strList;
 	}
 
+	/**
+	 * 排序，景点热度排序
+	 * 
+	 * @return
+	 */
 	public String[] select4DESC() {
 		String sql = "select name from tb_attractions order by query_num DESC limit 4";
 		String[] name = new String[4];
@@ -262,6 +332,14 @@ public class DBOperation {
 		return name;
 	}
 
+	/**
+	 * 模糊检索
+	 * 
+	 * @param tableHead
+	 * @param tableName
+	 * @param string
+	 * @return
+	 */
 	public List<String[]> selectLike(String[] tableHead, String tableName, String string) {
 		List<String[]> strList = new ArrayList<>();
 		// 构建sql语句
@@ -293,6 +371,15 @@ public class DBOperation {
 		return strList;
 	}
 
+	/**
+	 * 索引id
+	 * 
+	 * @param tableName
+	 * @param inputHead
+	 * @param outHead
+	 * @param inputText
+	 * @return
+	 */
 	public String getIdString(String tableName, String inputHead, String outHead, String inputText) {
 		String sql = "select " + outHead + " from " + tableName + " where " + inputHead + "='" + inputText + "'";
 		String out = null;
@@ -315,6 +402,15 @@ public class DBOperation {
 		return out;
 	}
 
+	/**
+	 * 新增记录
+	 * 
+	 * @param object
+	 * @param strs
+	 * @param tableHeads
+	 * @param tableName
+	 * @return
+	 */
 	public boolean insert(Object object, String[] strs, String[] tableHeads, String tableName) {
 		StringBuffer sql = new StringBuffer("insert into " + tableName + "(");
 		sql.append(tableHeads[0]);
@@ -341,6 +437,38 @@ public class DBOperation {
 			e.printStackTrace();
 		}
 
+		return false;
+	}
+
+	/**
+	 * 更新记录
+	 * 
+	 * @param tableName
+	 * @param info
+	 * @param whereStr
+	 * @return
+	 */
+	public boolean updateTable(String tableName, String[] tableHead, String[] info, String whereStr) {
+		StringBuffer sql = new StringBuffer("update " + tableName + " set ");
+		for (int i = 0; i < info.length; i++) {
+			if (!info[i].equals("null")) {
+				sql.append(tableHead[i] + " = '" + (info[i]) + "' ,");
+			}
+		}
+		sql.deleteCharAt(sql.length()-1);
+		sql.append(" where " + whereStr);
+		try {
+			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
+			System.out.println(sql);
+			if (statement.executeUpdate() == 1) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			System.out.println(tableName + "updateTable  出错！！！！！！！！！");
+			e.printStackTrace();
+		}
 		return false;
 	}
 
