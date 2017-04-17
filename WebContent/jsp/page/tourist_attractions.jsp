@@ -49,7 +49,19 @@
  		}
  	}
  	
-
+ 	function add_ticket(id){
+ 		alert(id);
+	 	var num1=prompt('请输入日期,如：2017-4-5');	 
+//验证不加了
+// 	 	var teststr = /^([2][0][1][7]-([1-9]|[1][0-2])-([0-9]|[1-2][0-9]|[3][0-1]))$/;
+// 		while(!teststr.test(num1)||num1="1"){
+// 			num1=prompt('请输入日期,如：2017-4-5');
+// 		}
+	 	while(num1==null || num1==""){
+	 		num1=prompt('请输入日期,如：2017-4-5')
+	 	}
+ 		window.location.href="AddTicket?type=attraction&time="+num1;
+	 }
 </script>
 <style type="text/css">
 .item_image {
@@ -109,7 +121,7 @@
 							<a href="DetaiInfoServlet?id=${attraction.name}">
 								<button class="btn btn-lg btn-primary" style="padding: 5px">查看详情</button>
 							</a>
-							<a onclick="#">
+							<a onclick="add_ticket(${attraction.id})">
 								<button class="btn btn-lg btn-primary" style="padding: 5px">预定门票</button>
 							</a>
 						</div>
