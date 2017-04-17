@@ -51,7 +51,7 @@
 			<strong style="font-size: 50px; color: #cc8822">多日游 活动</strong>
 			<hr />
 		</div>
-		<div style="width: 80%;z-index: 1">
+		<div style="width: 80%; z-index: 1">
 			<table>
 				<tr>
 					<td style="font-size: 30px; padding-left: 20px" width="250px">活动天数分类：</td>
@@ -103,11 +103,11 @@
 											<font size="5" color="#FF0000">${activity.number}日游活动</font>
 											${activity.info}
 										</font>
-										<div style="width: 100%" align="right">
-											<a href="./jsp/page/detailed_info_page.jsp">
-												<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button>
-											</a>
-										</div>
+										<!-- 										<div style="width: 100%" align="right"> -->
+										<!-- 											<a href="./jsp/page/detailed_info_page.jsp"> -->
+										<!-- 												<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button> -->
+										<!-- 											</a> -->
+										<!-- 										</div> -->
 								</div>
 							</td>
 						</tr>

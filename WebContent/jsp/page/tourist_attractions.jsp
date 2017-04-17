@@ -31,7 +31,7 @@
  	function topone(){
 		var now = parseInt(GetQueryString("now"));
 		var sum = parseInt(GetQueryString("sum"));
- 		if( now > 0){
+ 		if( now > 1){
  			now = now - 1;
  			window.location.href="jsp/page/tourist_attractions.jsp?sum="+sum+"&now="+now;
  		}else{
@@ -105,7 +105,7 @@
 					</td>
 				</tr>
 			</thead>
-			<c:forEach items="${attractionList}" var="attraction" begin="${param.now*5}" end="${param.now*5+4}">
+			<c:forEach items="${attractionList}" var="attraction" begin="${(param.now-1)*5}" end="${(param.now-1)*5+4}">
 				<tr>
 					<td width="100%-200px" class="item_font">
 						<font size="5">${attraction.name}</font>
@@ -121,9 +121,9 @@
 							<a href="DetaiInfoServlet?id=${attraction.name}">
 								<button class="btn btn-lg btn-primary" style="padding: 5px">查看详情</button>
 							</a>
-							<a onclick="add_ticket(${attraction.id})">
-								<button class="btn btn-lg btn-primary" style="padding: 5px">预定门票</button>
-							</a>
+<%-- 							<a onclick="add_ticket(${attraction.id})"> --%>
+<!-- 								<button class="btn btn-lg btn-primary" style="padding: 5px">预定门票</button> -->
+<!-- 							</a> -->
 						</div>
 					</td>
 					<td width="100px">

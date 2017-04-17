@@ -46,9 +46,12 @@ public class QueryAttraction extends HttpServlet {
 				getServletContext());
 		session.setAttribute("attractionList", attractions);
 		nameStr = operation.select4DESC();
-		session.setAttribute("nameStr", nameStr);   
-		num = attractions.size() / 5;
-		response.sendRedirect("jsp/page/tourist_attractions.jsp?sum=" + num + "&now=0");
+		session.setAttribute("nameStr", nameStr);
+		for (Attraction attraction : attractions) {
+			operation.queryplus("query_num", attraction.getId() + "", "tb_attractions");
+		}
+		num = attractions.size() / 5+1;
+		response.sendRedirect("jsp/page/tourist_attractions.jsp?sum=" + num + "&now=1");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

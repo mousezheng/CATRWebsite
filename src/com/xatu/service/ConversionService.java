@@ -136,7 +136,7 @@ public class ConversionService {
 		tempUser.setPhoto(temp[9]);
 		tempUser.setDescribe(temp[10]);
 		if (temp[11] == null) {
-			tempUser.setAge(0);
+			tempUser.setAge(null);
 		} else {
 			tempUser.setAge(Integer.parseInt(temp[11]));
 		}

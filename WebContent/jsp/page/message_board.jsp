@@ -33,7 +33,7 @@
 	function topone() {
 		var now = parseInt(GetQueryString("now"));
 		var sum = parseInt(GetQueryString("sum"));
-		if (now > 0) {
+		if (now > 1) {
 			now = now - 1;
 			window.location.href = "jsp/page/message_board.jsp?sum=" + sum
 					+ "&now=" + now;
@@ -89,7 +89,7 @@
 			<strong style="font-size: 30px;">留言板</strong>
 		</div>
 		<hr />
-		<c:forEach items="${messageList}" var="message" begin="${param.now*5}" end="${param.now*5+4}">
+		<c:forEach items="${messageList}" var="message" begin="${(param.now-1)*5}" end="${(param.now-1)*5+4}">
 			<table style="width: 80%; padding: 20px; margin-bottom: 20px" border="2px" bordercolor="20b2aa">
 				<tr>
 					<td rowspan="3" align="center" style="padding: 20px" width="100px">
@@ -116,13 +116,12 @@
 				<tr height="20px" align="right">
 					<td>
 						<!-- <a href="gg" style="width: 40px; padding: 5px">回复(0)</a> -->
-						<a href="gg" style="width: 40px; padding: 5px">赞同(${message.agreeNum})</a>
-						<a href="gg" style="width: 40px; padding: 5px">不赞同(${message.disagreeNum})</a>
+						<a href="AgreeOrDisagree?sign=agree&id=${message.id}" style="width: 40px; padding: 5px">赞同(${message.agreeNum})</a>
+						<a href="AgreeOrDisagree?sign=disagree&id=${message.id}" style="width: 40px; padding: 5px">不赞同(${message.disagreeNum})</a>
 					</td>
 				</tr>
 			</table>
 		</c:forEach>
-		</table>
 		<table style="width: 80%; padding: 20px;" border="2px" bordercolor="20b2aa">
 			<tr>
 				<td colspan="2" align="center" height="100px">

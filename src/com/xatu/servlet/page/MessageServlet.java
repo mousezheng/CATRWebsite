@@ -40,12 +40,12 @@ public class MessageServlet extends HttpServlet {
 				"tb_user.id=tb_message.user_id  order by tb_message.id"), getServletContext());
 
 		session.setAttribute("messageList", messages);
-		num = messages.size() / 5;
+		num = (messages.size() - 1) / 5 + 1;
 		// System.out.println( messages.size()+" "+num);
 		if (request.getParameter("sign") != null)
-			response.sendRedirect("jsp/page/message_board.jsp?" + "sum=" + num + "&now="+num);
+			response.sendRedirect("jsp/page/message_board.jsp?" + "sum=" + num + "&now=" + num);
 		else
-			response.sendRedirect("jsp/page/message_board.jsp?" + "sum=" + num + "&now=0");
+			response.sendRedirect("jsp/page/message_board.jsp?" + "sum=" + num + "&now=1");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

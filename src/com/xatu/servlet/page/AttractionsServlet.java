@@ -53,8 +53,8 @@ public class AttractionsServlet extends HttpServlet {
 		// session.getAttribute("attractionList");
 		// nameStr = (String[]) session.getAttribute("nameStr");
 		// }
-		num = attractions.size() / 5;
-		response.sendRedirect("jsp/page/tourist_attractions.jsp?sum=" + num + "&now=0");
+		num = attractions.size() / 5+1;
+		response.sendRedirect("jsp/page/tourist_attractions.jsp?sum=" + num + "&now=1");
 		// ≤‚ ‘ π”√
 		// String str = FileService.fileToString("resources/¥Û—„À˛/describe.txt",
 		// getServletContext());

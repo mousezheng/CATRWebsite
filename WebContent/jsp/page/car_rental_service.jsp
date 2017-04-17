@@ -50,9 +50,9 @@
 			<option value="${attraction.name}">${attraction.name}</option>
 		</c:forEach>
 	</select>
-	<div>
-		<form action="">
-			<table style="border-collapse: separate; border-spacing: 0px 10px; width: 100%; float: left; padding: 50px; padding-top: 0">
+	<div style="width: 100%" align="center">
+<!-- 		<form action=""> -->
+			<table style="border-collapse: separate; border-spacing: 0px 10px; width: 80%; padding: 50px; padding-top: 0">
 				<c:forEach items="${carList}" var="car">
 					<c:if test="${car.address==param.id  || empty param.id}">
 						<tr>
@@ -64,7 +64,7 @@
 								<font size="3">联系人：${car.contactName}</font>
 								<br />
 								<font size="3">联系电话：${car.contactPhone}</font>
-								<input class="btn btn-lg btn-primary" type="button" value="预定" style="float: right; width: 100px" />
+<!-- 								<input class="btn btn-lg btn-primary" type="button" value="预定" style="float: right; width: 100px" /> -->
 							</td>
 							<td width="100px">
 								<img alt="景点图片" src="resources/${car.address}/image.jpg" width="160px" height="160px">
@@ -73,7 +73,7 @@
 					</c:if>
 				</c:forEach>
 			</table>
-		</form>
+		<!-- 		</form> -->
 	</div>
 </body>
 </html>

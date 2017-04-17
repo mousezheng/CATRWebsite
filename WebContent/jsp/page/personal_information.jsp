@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -88,14 +88,16 @@
 					<td colspan="3" style="font-size: 30px">
 						<strong>${user.userName}</strong>
 						<a href="jsp/page2/repassword.jsp" style="font-size: 18px">修改密码</a>
-						<a href="jsp/page/chage_info.jsp"><img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px"></a>
+						<a href="jsp/page/chage_info.jsp">
+							<img alt="编辑按钮" src="resources/editimg.gif" style="float: right;" width="40px" height="40px">
+						</a>
 						<img alt="保存按钮" src="resources/save.gif" style="float: right; margin-right: 20px" width="40px" height="40px" onclick="submit_form();">
 					</td>
 				</tr>
 				<tr>
 					<td>真实姓名：${user.name}</td>
 					<td>性别：${user.sex}</td>
-					<td>年龄：${user.age }</td>
+					<td>年龄：${user.age}</td>
 				</tr>
 				<tr>
 					<td>住址：${user.address }</td>
@@ -113,58 +115,52 @@
 		<table width="80%" style="margin-top: 30px; font-size: 20px">
 			<tr>
 				<td>
-					<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px">预订的门票</button>
+					<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px">我的留言</button>
 				</td>
-				<td>
-					<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px">预定的酒店</button>
-				</td>
-				<td>
-					<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px">预定的租车</button>
-				</td>
+<!-- 				<td> -->
+<!-- 					<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px">我的足迹</button> -->
+<!-- 				</td> -->
 			</tr>
 
 		</table>
 		<table width="80%" style="margin-top: 20px; font-size: 20px; margin-bottom: 100px" border="2px">
 			<tr align="center" style="font-size: 30px">
-				<td>名称</td>
-				<td>数量</td>
-				<td>单价/总价</td>
-				<td>时间/是否过期</td>
+				<td>时间</td>
+				<td>几楼</td>
+				<td>内容</td>
+				<td>赞同/不赞同</td>
 			</tr>
-			<tr align="center" class="item">
-				<td>大雁塔参观门票</td>
-				<td>2</td>
-				<td>￥50&nbsp;￥100</td>
-				<td>2017/12/13(未过期)</td>
-			</tr>
-			<tr align="center" class="item2">
-				<td>大雁塔参观门票</td>
-				<td>1</td>
-				<td>三日游特价票</td>
-				<td>2017/2/13(已过期)</td>
-			</tr>
-			<tr align="center" class="item">
-				<td>大雁塔参观门票</td>
-				<td>2</td>
-				<td>￥50&nbsp;￥100</td>
-				<td>2017/12/13(未过期)</td>
-			</tr>
-			<tr align="center" class="item2">
-				<td>大雁塔参观门票</td>
-				<td>1</td>
-				<td>三日游特价票</td>
-				<td>2017/2/13(已过期)</td>
-			</tr>
-			<tr>
-				<td colspan="4" align="center" style="padding-bottom: 100px; font-size: 20px; padding: 20px">
-					<font size="4">
-						<a>上一页</a>
-						&nbsp 第1页/共10页
-						<a>下一页</a>
-						&nbsp
-					</font>
-				</td>
-			</tr>
+			<c:forEach items="${messageList}" var="message" varStatus="num">
+				<c:choose>
+					<c:when test="${num.index%2==0}">
+						<tr align="center" class="item">
+							<td>${message.time}</td>
+							<td>${message.id}</td>
+							<td>${message.content}</td>
+							<td>${message.agreeNum}/${message.disagreeNum}</td>
+						</tr>
+					</c:when>
+					<c:when test="${num.index%2!=0}">
+						<tr align="center" class="item2">
+							<td>${message.time}</td>
+							<td>${message.id}</td>
+							<td>${message.content}</td>
+							<td>${message.agreeNum}/${message.disagreeNum}</td>
+						</tr>
+					</c:when>
+				</c:choose>
+
+			</c:forEach>
+			<!-- 			<tr> -->
+			<!-- 				<td colspan="4" align="center" style="padding-bottom: 100px; font-size: 20px; padding: 20px"> -->
+			<!-- 					<font size="4"> -->
+			<!-- 						<a>上一页</a> -->
+			<!-- 						&nbsp 第1页/共10页 -->
+			<!-- 						<a>下一页</a> -->
+			<!-- 						&nbsp -->
+			<!-- 					</font> -->
+			<!-- 				</td> -->
+			<!-- 			</tr> -->
 		</table>
 	</div>
 </body>

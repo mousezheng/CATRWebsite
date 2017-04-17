@@ -19,7 +19,7 @@ public class User {
 	private String qqNum; // qqºÅ
 	private String photo; // ÕÕÆ¬
 	private String describe; // ÃèÊö
-	private int age; // ÄêÁä
+	private Integer age; // ÄêÁä
 	private String birthday;
 
 	public String getBirthday() {
@@ -118,11 +118,11 @@ public class User {
 		this.describe = describe;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 

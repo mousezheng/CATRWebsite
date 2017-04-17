@@ -44,9 +44,9 @@
 						单人票价：
 						<strong>
 							${attraction.ticketPrices}元&nbsp;
-							<a href="./jsp/page/detailed_info_page.jsp">
-								<button class="btn btn-lg btn-primary" style="padding: 5px">预定门票</button>
-							</a>
+<!-- 							<a href="./jsp/page/detailed_info_page.jsp"> -->
+<!-- 								<button class="btn btn-lg btn-primary" style="padding: 5px">预定门票</button> -->
+<!-- 							</a> -->
 						</strong>
 					</font>
 					<hr />

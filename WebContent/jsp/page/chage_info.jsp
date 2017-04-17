@@ -27,49 +27,52 @@
 				<tr>
 					<td class="item">真实姓名:</td>
 					<td class="item">
-						<input type="text" name="name">
+						<input type="text" name="name" value="${user.name==null? "":user.name}">
 					</td>
 				</tr>
 				<tr>
 					<td class="item">性别:</td>
 					<td class="item">
-						<input type="radio" name="sex" value="男" checked="checked">男
-						&nbsp;&nbsp;
-						<input type="radio" name="sex" value="女">女
+						<input type="radio" name="sex" value="男" ${user.sex.equals("男")? "checked='checked'":""}>
+						男 &nbsp;&nbsp;
+						<input type="radio" name="sex" value="女" ${user.sex.equals("女")? "checked='checked'":""}>
+						女
 					</td>
 				</tr>
 				<tr>
 					<td class="item">年龄:</td>
 					<td class="item">
-						<input type="text" name="age" style="width: 50px">&nbsp;岁
+						<input type="text" name="age" style="width: 50px" value="${user.age==null? "":user.age}">
+						&nbsp;岁
 					</td>
 				</tr>
 				<tr>
 					<td class="item">住址:</td>
 					<td class="item">
-						<input type="text" name="address">
+						<input type="text" name="address" value="${user.address==null? "":user.address}">
 					</td>
 				</tr>
 				<tr>
 					<td class="item">联系电话:</td>
 					<td class="item">
-						<input type="text" name="phone">
+						<input type="text" name="phone" value="${user.phone==null? "":user.phone}">
 					</td>
 				</tr>
 				<tr>
 					<td class="item">出生年月:</td>
 					<td class="item">
-						<input type="text" name="year" style="width: 80px">
+						<input type="text" name="year" style="width: 80px" value="${user.birthday!=null?user.birthday.split("年")[0]:""}">
 						年&nbsp;
-						<input type="text" name="month" style="width: 40px">
+						<input type="text" name="month" style="width: 40px" value="${user.birthday!=null?user.birthday.split("月")[0].split("年")[1]:""}">
 						月
 					</td>
 				</tr>
 				<tr>
 					<td class="item">Email地址:</td>
 					<td class="item">
-						<input type="text" name="email">
+						<input type="text" name="email" value="${user.email!=null? user.email.split("@")[0]:""}">
 						<select class="selector" name="selector">
+							<option value="@${user.email!=null? user.email.split("@")[1]:""}">@${user.email!=null? user.email.split("@")[1]:""}</option>
 							<option value="@qq.com">@qq.com</option>
 							<option value="@162.com">@163.com</option>
 							<option value="@139.com">@126.com</option>
@@ -80,7 +83,7 @@
 				<tr>
 					<td class="item">个性签名:</td>
 					<td class="item">
-						<textarea  name="info" style="width: 100%; height: 100px; color: #000000" placeholder="输入个性签名"></textarea>
+						<textarea name="info" style="width: 100%; height: 100px; color: #000000" placeholder="输入个性签名">${user.describe.equals('')? null:user.describe}</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -88,7 +91,7 @@
 				</tr>
 				<tr>
 					<td align="center" colspan="2" style="padding-top: 10px">
-						<input class="btn btn-lg btn-primary" style="font-size: 25px" type="submit" value="提交"/>
+						<input class="btn btn-lg btn-primary" style="font-size: 25px" type="submit" value="提交" />
 						&nbsp;
 						<input class="btn-lg btn-warning" style="font-size: 25px" type="reset" value="重置" />
 					</td>

@@ -441,6 +441,23 @@ public class DBOperation {
 	}
 
 	/**
+	 * 浏览/搜索次数加一
+	 * 
+	 * @param string
+	 * @param string2
+	 */
+	public void queryplus(String seeOrQuery, String id,String tableName) {
+		String sql = "update "+tableName+" set " + seeOrQuery + "=" + seeOrQuery + "+1 " + " where id='" + id + "'";
+		try {
+			PreparedStatement statement = dbConn.prepareStatement(sql);
+			System.out.println(sql);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * 更新记录
 	 * 
 	 * @param tableName
@@ -455,7 +472,7 @@ public class DBOperation {
 				sql.append(tableHead[i] + " = '" + (info[i]) + "' ,");
 			}
 		}
-		sql.deleteCharAt(sql.length()-1);
+		sql.deleteCharAt(sql.length() - 1);
 		sql.append(" where " + whereStr);
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql.toString());

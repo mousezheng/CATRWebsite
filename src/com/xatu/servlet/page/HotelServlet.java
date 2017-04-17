@@ -40,10 +40,10 @@ public class HotelServlet extends HttpServlet {
 					getServletContext());
 			session.setAttribute("hotelList", hotels);
 		}
-		/*
-		 * 2017年4月16日11:49:28 修复当直接点击酒店/租车页面时，无法正确显示目的地
-		 */
-		if (session.getAttribute("attractionList") == null) {
+//		/*
+//		 * 2017年4月16日11:49:28 修复当直接点击酒店/租车页面时，无法正确显示目的地
+//		 */
+//		if (session.getAttribute("attractionList") == null) {
 			String[] tableHead1 = { "id", "name", "info", "see_num", "query_num", "img_file", "ticket_prices",
 					"address" };
 			String tableName1 = "tb_attractions";
@@ -51,7 +51,7 @@ public class HotelServlet extends HttpServlet {
 					getServletContext());
 
 			session.setAttribute("attractionList", attractions);
-		}
+//		}
 		response.sendRedirect("jsp/page/hotel_reservation.jsp");
 	}
 
