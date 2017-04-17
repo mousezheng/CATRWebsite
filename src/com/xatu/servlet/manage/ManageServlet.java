@@ -21,7 +21,11 @@ public class ManageServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setCharacterEncoding("GBK");
+		String sign = request.getParameter("sign");
+		System.out.println(sign);
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -8,7 +8,7 @@ package com.xatu.bean;
  */
 public class User {
 
-	private int id;
+	private Integer id;
 	private String userName; // 用户名
 	private String password; // 密码
 	private String phone; // 手机号码
@@ -22,6 +22,8 @@ public class User {
 	private Integer age; // 年龄
 	private String birthday;
 
+	public User() {
+	}
 	public String getBirthday() {
 		return birthday;
 	}
@@ -30,11 +32,11 @@ public class User {
 		this.birthday = birthday;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

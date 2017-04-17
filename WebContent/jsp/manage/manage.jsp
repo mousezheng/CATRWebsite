@@ -1,13 +1,18 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<base href="<%=basePath%>">
 <title>管理员</title>
 <link rel="stylesheet" href="bootstrap3.2.2/css/bootstrap.min.css">
 <script type="text/javascript" language="javascript">
 	function select(num) {
-		window.location.href="ManageServlet?sign="+num;
+		window.location.href="/ManageServlet?sign="+num;
 	}
 </script>
 <style type="text/css">
@@ -26,35 +31,36 @@
 		<tr>
 			<td width="15%" align="center" class="item_table_head" onclick="select(0)">管理员表</td>
 			<td width="80%" rowspan="13" valign="top">
-				<div>
-					<table width="100%"> 
-						<thead>
-							<tr>
-								<td>use</td>
-								<td>use</td>
-								<td>use</td>
-								<td>use</td>
-							</tr>
-						</thead>
-						<tr>
-							<td>use</td>
-							<td>use</td>
-							<td>use</td>
-							<td>use</td>
-						</tr>
-						<tr>
-							<td>use</td>
-							<td>use</td>
-							<td>use</td>
-							<td>use</td>
-						</tr>
-						<tr>
-							<td>use</td>
-							<td>use</td>
-							<td>use</td>
-							<td>use</td>
-						</tr>
-					</table>
+				<div style="padding: 20px">
+				<jsp:include page="./part/manage.jsp"></jsp:include>
+<!-- 					<table width="100%">  -->
+<!-- 						<thead> -->
+<!-- 							<tr> -->
+<!-- 								<td>use</td> -->
+<!-- 								<td>use</td> -->
+<!-- 								<td>use</td> -->
+<!-- 								<td>use</td> -->
+<!-- 							</tr> -->
+<!-- 						</thead> -->
+<!-- 						<tr> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 							<td>use</td> -->
+<!-- 						</tr> -->
+<!-- 					</table> -->
 				</div>
 			</td>
 		</tr>
