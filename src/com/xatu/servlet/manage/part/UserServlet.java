@@ -33,11 +33,29 @@ public class UserServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		// 这些属于私密信息，不允许管理员修改
 		// ,"birthday","name","sex","email","address","info","age"
-
-		List<String[]> tempStrs = operation.select(TableInfo.userTableHead, TableInfo.tableName[2]);
+		makeAdd(request,response);
+		List<String[]> tempStrs = operation.select(TableInfo.userTableHead, TableInfo.tableName[1]);
 		List<User> users = null;
 		users = ManagerService.StringToUser(tempStrs);
 		session.setAttribute("users", users);
+		session.setAttribute("tableHead", TableInfo.userTableHead);
+		response.sendRedirect("jsp/manage/part/user.jsp");
+	}
+
+	/**
+	 * 处理增加操作
+	 * @param request
+	 * @param response
+	 */
+	private void makeAdd(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter(TableInfo.userTableHead[0]);
+		String userName = request.getParameter(TableInfo.userTableHead[1]);
+		String password = request.getParameter(TableInfo.userTableHead[2]);
+		String phone = request.getParameter(TableInfo.userTableHead[3]);
+		System.out.println(userName);
+		System.out.println(id);
+		System.out.println(password);
+		System.out.println(phone);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

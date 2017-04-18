@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="bootstrap3.2.2/css/bootstrap.min.css">
 <script type="text/javascript" language="javascript">
 	function select(num) {
-		window.location.href="/ManageServlet?sign="+num;
+		window.location.href="UserServlet?sign="+num;
 	}
 </script>
 <style type="text/css">
@@ -30,9 +30,10 @@
 	<table name="table1" style="background-color: EEEEEE; height: 90%;" width="100%">
 		<tr>
 			<td width="15%" align="center" class="item_table_head" onclick="select(0)">管理员表</td>
-			<td width="80%" rowspan="13" valign="top">
-				<div style="padding: 20px">
-				<jsp:include page="./part/manage.jsp"></jsp:include>
+			<td width="80%" rowspan="13" valign="top" height="100%">
+				<div style="padding: 20px;height: 100%">
+				<iframe src="jsp/manage/part/user.jsp" width="100%" height="100%" style="height: 80%"></iframe>
+<%-- 				<jsp:include page="./part/manage.jsp"></jsp:include> --%>
 <!-- 					<table width="100%">  -->
 <!-- 						<thead> -->
 <!-- 							<tr> -->

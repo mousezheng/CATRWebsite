@@ -23,7 +23,7 @@ public class ManagerService {
 		for (String[] strs : tempStrs) {
 			User user = new User();
 			users.add(user);
-			if (strs[0] != null && strs[0].equals("")) {
+			if (strs[0] != null && !strs[0].equals("")) {
 				user.setId(Integer.parseInt(strs[0]));
 			}
 			user.setUserName(strs[1]);
