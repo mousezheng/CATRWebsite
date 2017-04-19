@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.xatu.bean.User;
 import com.xatu.dao.DBOperation;
 import com.xatu.service.ManagerService;
+import com.xatu.util.StringChage;
 import com.xatu.util.TableInfo;
 
 /**
@@ -33,10 +34,39 @@ public class UserServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		// 这些属于私密信息，不允许管理员修改
 		// ,"birthday","name","sex","email","address","info","age"
-		makeAdd(request,response);
-		List<String[]> tempStrs = operation.select(TableInfo.userTableHead, TableInfo.tableName[1]);
-		List<User> users = null;
-		users = ManagerService.StringToUser(tempStrs);
+		// 输入信息不为空添加一条记录
+		String sign = request.getParameter("sign_user");
+		System.out.println("=====================" + sign);
+		if (sign != null) {
+			if (sign.equals("delete")) {
+				String id = request.getParameter("item_id");
+				operation.delete("tb_user", id);
+			}
+			if (sign.equals("updata")) {
+				String id = request.getParameter(TableInfo.userTableHead[0]);
+				String userName = StringChage.encodingChage(request.getParameter(TableInfo.userTableHead[1]));
+				String password = request.getParameter(TableInfo.userTableHead[2]);
+				String phone = request.getParameter(TableInfo.userTableHead[3]);
+				String[] data = { id, userName, password, phone };
+				for (int i = 0; i < data.length; i++) {
+					System.out.println(data[i]);
+				}
+				operation.delete("tb_user", id);
+				operation.insertInto(TableInfo.tableName[1], TableInfo.userTableHead, data);
+			}
+		} else if (request.getParameter(TableInfo.userTableHead[0]) != null)
+			makeAdd(request, response, operation);
+
+		List<String[]> tempStrs = null;
+		String query = request.getParameter("query");
+		if (query != null&& !query.equals("")) {
+			query = StringChage.encodingChage(query);
+			tempStrs = operation.selectLike(TableInfo.userTableHead, "tb_user", "id like '%" + query + "%' or "
+					+ "user_name like '%" + query + "%' or " + "phone like '%" + query + "%'");
+		} else {
+			tempStrs = operation.select(TableInfo.userTableHead, TableInfo.tableName[1]);
+		}
+		List<User> users = ManagerService.StringToUser(tempStrs);
 		session.setAttribute("users", users);
 		session.setAttribute("tableHead", TableInfo.userTableHead);
 		response.sendRedirect("jsp/manage/part/user.jsp");
@@ -44,18 +74,20 @@ public class UserServlet extends HttpServlet {
 
 	/**
 	 * 处理增加操作
+	 * 
 	 * @param request
 	 * @param response
 	 */
-	private void makeAdd(HttpServletRequest request, HttpServletResponse response) {
+	private void makeAdd(HttpServletRequest request, HttpServletResponse response, DBOperation operation) {
 		String id = request.getParameter(TableInfo.userTableHead[0]);
-		String userName = request.getParameter(TableInfo.userTableHead[1]);
+		String userName = StringChage.encodingChage(request.getParameter(TableInfo.userTableHead[1]));
 		String password = request.getParameter(TableInfo.userTableHead[2]);
 		String phone = request.getParameter(TableInfo.userTableHead[3]);
-		System.out.println(userName);
-		System.out.println(id);
-		System.out.println(password);
-		System.out.println(phone);
+		String[] data = { id, userName, password, phone };
+		// for (int i = 0; i < data.length; i++) {
+		// System.out.println(data[i]);
+		// }
+		operation.insertInto(TableInfo.tableName[1], TableInfo.userTableHead, data);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

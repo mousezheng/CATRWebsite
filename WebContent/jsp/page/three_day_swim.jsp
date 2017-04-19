@@ -80,7 +80,7 @@
 					<c:if test="${activity.number==param.num || empty param.num}">
 						<tr>
 							<td width="300px" align="center">
-								<img alt="景点图片" src="${activity.imageFile}/image.jpg" width="200px" height="200px" class="item_image" style="border-radius: 10px">
+								<img alt="景点图片" src="resources/${activity.places[0]}/image.jpg" width="200px" height="200px" class="item_image" style="border-radius: 10px">
 							</td>
 							<td colspan="5">
 								<div>
@@ -93,21 +93,22 @@
 									<font size="5">旅游路线：</font>
 									<font size="4">
 										<strong style="color: #ff0000">火车站</strong>
-										<c:forEach items="${activity.places}" var="places">
-								&nbsp;&gt;&nbsp;${places}
-								</c:forEach>
-										<br />
-										<font size="5">详情：</font>
-										<font size="3">
-											本次活动是属于：
-											<font size="5" color="#FF0000">${activity.number}日游活动</font>
-											${activity.info}
-										</font>
-										<!-- 										<div style="width: 100%" align="right"> -->
-										<!-- 											<a href="./jsp/page/detailed_info_page.jsp"> -->
-										<!-- 												<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button> -->
-										<!-- 											</a> -->
-										<!-- 										</div> -->
+									</font>
+									<c:forEach items="${activity.places}" var="places">
+										&nbsp;&gt;&nbsp;${places}
+									</c:forEach>
+									<br />
+									<font size="5">详情：</font>
+									<font size="3">
+										本次活动是属于：
+										<font size="5" color="#FF0000">${activity.number}日游活动</font>
+										${activity.info}
+									</font>
+									<!-- 										<div style="width: 100%" align="right"> -->
+									<!-- 											<a href="./jsp/page/detailed_info_page.jsp"> -->
+									<!-- 												<button class="btn btn-lg btn-primary" style="padding: 5px">参与活动</button> -->
+									<!-- 											</a> -->
+									<!-- 										</div> -->
 								</div>
 							</td>
 						</tr>

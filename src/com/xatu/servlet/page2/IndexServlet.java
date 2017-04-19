@@ -1,4 +1,4 @@
-package com.xatu.servlet.manage.part;
+package com.xatu.servlet.page2;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,13 +16,13 @@ import com.xatu.service.ManagerService;
 import com.xatu.util.TableInfo;
 
 /**
- * 用户表业务处理
+ * 初始页面处理，主要是公告更新
  */
-@WebServlet("/AnnounceServlet")
-public class AnnounceServlet extends HttpServlet {
+@WebServlet("")
+public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AnnounceServlet() {
+	public IndexServlet() {
 		super();
 	}
 
@@ -31,19 +31,11 @@ public class AnnounceServlet extends HttpServlet {
 		response.setCharacterEncoding("GBK");
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
-		String title = request.getParameter("title");
-		if (title!=null && !title.equals("")) {
-			String time = request.getParameter("time");
-			String content = request.getParameter("content");
-			operation.delete(TableInfo.tableName[3], "1");
-			String data[] = {"1",title,content,time};
-			operation.insertInto(TableInfo.tableName[3], TableInfo.announceTableHead, data);
-		}
 		List<String[]> tempStrs = null;
 		tempStrs = operation.select(TableInfo.announceTableHead, TableInfo.tableName[3]);
 		List<Announce> announces = ManagerService.StringToAnnounce(tempStrs);
 		session.setAttribute("announce", announces.get(0));
-		response.sendRedirect("jsp/manage/part/announce.jsp");
+		response.sendRedirect("index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

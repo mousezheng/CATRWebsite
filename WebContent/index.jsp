@@ -30,9 +30,10 @@
 	<marquee direction="left" scrollamount="5" scrolldelay="5" id="scroll" style="background-color: #222222">
 
 		<p class="txt" style="font-size: 4; color: #FFFFFF">
-			<font class="txt" style="font-size: 4; color: #FF5fcc">公告◄)：</font>
-			近日，大雁塔有大型活动，前往旅游的游客，可参与活动，领取精美礼品&nbsp;&nbsp;
+			<font class="txt" style="font-size: 4; color: #FF5fcc">${announce.title}◄)：</font>
+			${announce.time}，${announce.content}
 		</p>
+<!-- 		大雁塔有大型活动，前往旅游的游客，可参与活动，领取精美礼品&nbsp;&nbsp; -->
 	</marquee>
 
 	<div style="height: 70%; width: 100%">

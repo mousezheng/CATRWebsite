@@ -209,6 +209,7 @@ public class DBOperation {
 		sql.append(" from " + tableName);
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
+			System.out.println(sql.toString());
 			ResultSet rs = statement.executeQuery();
 			System.out.println("sql执行完毕");
 			// 解析查找结果
@@ -446,8 +447,8 @@ public class DBOperation {
 	 * @param string
 	 * @param string2
 	 */
-	public void queryplus(String seeOrQuery, String id,String tableName) {
-		String sql = "update "+tableName+" set " + seeOrQuery + "=" + seeOrQuery + "+1 " + " where id='" + id + "'";
+	public void queryplus(String seeOrQuery, String id, String tableName) {
+		String sql = "update " + tableName + " set " + seeOrQuery + "=" + seeOrQuery + "+1 " + " where id='" + id + "'";
 		try {
 			PreparedStatement statement = dbConn.prepareStatement(sql);
 			System.out.println(sql);
@@ -487,6 +488,56 @@ public class DBOperation {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	/**
+	 * 插入信息
+	 * 
+	 * @param string
+	 * @param usertablehead
+	 * @param data
+	 */
+	public void insertInto(String tableName, String[] usertablehead, String[] data) {
+		StringBuffer sql = new StringBuffer("insert into " + tableName);
+		sql.append("(").append(usertablehead[0]);
+		for (int i = 1; i < usertablehead.length; i++) {
+			sql.append(",").append(usertablehead[i]);
+		}
+		sql.append(")  values('").append(data[0]).append("'");
+		for (int i = 1; i < data.length; i++) {
+			sql.append(",'").append(data[i]).append("'");
+		}
+		sql.append(")");
+		try {
+			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
+			System.out.println(sql);
+			if (statement.executeUpdate() == 1) {
+				System.out.println("====================   " + tableName + "表插入一条记录    =============");
+			} else {
+				System.out.println("====================   " + tableName + "表插入出错！    =============");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void delete(String tableName, String id) {
+		String sql = "delete from " + tableName + " where id='" + id + "'";
+		try {
+			PreparedStatement statement = dbConn.prepareStatement(sql.toString());
+			System.out.println(sql);
+			if (statement.executeUpdate() == 1) {
+				System.out.println("====================   " + tableName + "表删除一条记录    =============");
+			} else {
+				System.out.println("====================   " + tableName + "表删除出错！！！    =============");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updata(String string, String[] data, String id) {
+		
 	}
 
 }
