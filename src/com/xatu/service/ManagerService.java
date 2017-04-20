@@ -3,6 +3,8 @@ package com.xatu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import com.xatu.bean.Activity;
 import com.xatu.bean.Announce;
 import com.xatu.bean.Attraction;
@@ -130,6 +132,27 @@ public class ManagerService {
 			activitys.add(activity);
 		}
 		return activitys;
+	}
+
+	public static List<Attraction> StringToAttraction(List<String[]> tempStrs,ServletContext sc) {
+		List<Attraction> attractionList = new ArrayList<>();
+		int n = tempStrs.size();
+		for (int i = 0; i < n; i++) {
+			Attraction tempAttraction = new Attraction();
+			String[] temp = tempStrs.get(i);
+			// ¸³Öµ
+			tempAttraction.setId(Integer.parseInt(temp[0]));
+			tempAttraction.setName(temp[1]);
+//			tempAttraction.setDescribe(FileService.fileToString(temp[2], sc));
+			tempAttraction.setDescribe(temp[2]);
+			tempAttraction.setSeeNum(Integer.parseInt(temp[3]));
+			tempAttraction.setQueryNum(Integer.parseInt(temp[4]));
+			tempAttraction.setImgFile(FileService.getImageFile(temp[5], sc));
+			tempAttraction.setTicketPrices(Integer.parseInt(temp[6]));
+			tempAttraction.setAddress(temp[7]);
+			attractionList.add(tempAttraction);
+		}
+		return attractionList;
 	}
 
 }

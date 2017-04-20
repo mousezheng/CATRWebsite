@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 	function addclick(num) {
-		window.location.href = "jsp/manage/part/message.jsp?isadd=1";
+		window.location.href = "jsp/manage/part/attraction.jsp?isadd=1";
 	}
 	function submitform() {
 		document.getElementById("form1").submit();
@@ -20,9 +20,9 @@
 </script>
 </head>
 <body>
-	<form id="form1" name="form1" action="MessagesServlet${param.item_id==null? null:'?sign_message=updata'}" style="background-color: #EEEEEE; padding-top: 20px; width: 100%;" method="post">
+	<form id="form1" name="form1" enctype="multipart/form-data" action="AttractionServlet?sign_attraction=${param.item_id==null? 'query':'updata'}${param.isadd==null? null:'add'}" style="background-color: #EEEEEE; padding-top: 20px; width: 100%;" method="post">
 		<div align="center">
-			<h2>用户表</h2>
+			<h2>景点信息表</h2>
 			<div align="right">
 				<input style="color: #000000" type="text" width="70%" height="50px" name="query" id="query">
 				<input type="submit" value="搜索" style="margin: 10px">
@@ -37,66 +37,83 @@
 						<td align="center" width="20%">操作</td>
 					</tr>
 				</thead>
-				<c:forEach items="${messages}" var="message" varStatus="num">
-					<c:if test="${param.item_id==message.id }">
+				<c:forEach items="${attractions}" var="attraction" varStatus="num">
+					<c:if test="${param.item_id==attraction.id }">
 						<tr>
 							<td align="center" width="10%">
-								<input type="text" width="80%" name="id" value="${message.id}">
+								<input type="text" width="80%" name="id" value="${attraction.id}">
 							</td>
 							<td align="center" width="10%">
-								<input type="text" width="80%" name="user_id" value="${message.userId}">
+								<input type="text" width="80%" name="name" value="${attraction.name}">
 							</td>
 							<td align="center" width="10%">
-								<input type="text" width="80%" name="content" value="${message.content}">
+								<input type="file" width="80%" name="info" value="${attraction.describe}">
 							</td>
 							<td align="center" width="10%">
-								<input type="text" width="80%" name="agree_num" value="${message.agreeNum}">
+								<input type="text" width="80%" name="see_num" value="${attraction.seeNum}">
 							</td>
 							<td align="center" width="10%">
-								<input type="text" width="80%" name="disagree_num" value="${message.disagreeNum}">
+								<input type="text" width="80%" name="query_num" value="${attraction.queryNum}">
 							</td>
 							<td align="center" width="10%">
-								<input type="text" width="80%" name="time" value="${message.time}">
+								<input type="file" width="80%" name="image" value="${attraction.imgFile[0]}">
+								<br />
+								<input type="file" width="80%" name="image1" value="${attraction.imgFile[1]}">
+								<br />
+								<input type="file" width="80%" name="image2" value="${attraction.imgFile[2]}">
 							</td>
 							<td align="center" width="10%">
-								<input type="text" width="80%" name="address" value="${message.address}">
+								<input type="text" width="80%" name="ticket_prices" value="${attraction.ticketPrices}">
+							</td>
+							<td align="center" width="10%">
+								<input type="text" width="80%" name="address" value="${attraction.address}">
 							</td>
 							<td align="center" width="40%">
 								<a onclick="submitform()">提交</a>
 							</td>
 						</tr>
 					</c:if>
-					<c:if test="${param.item_id!=message.id }">
+					<c:if test="${param.item_id!=attraction.id }">
 						<c:choose>
 							<c:when test="${num.index%2==0}">
 								<tr align="center" class="item">
-									<td>${message.id}</td>
-									<td>${message.userId}</td>
-									<td>${message.content}</td>
-									<td>${message.agreeNum}</td>
-									<td>${message.disagreeNum}</td>
-									<td>${message.time}</td>
-									<td>${message.address}</td>
+									<td>${attraction.id}</td>
+									<td>${attraction.name}</td>
+									<td>${attraction.describe}</td>
+									<td>${attraction.seeNum}</td>
+									<td>${attraction.queryNum}</td>
 									<td>
-										<a href="jsp/manage/part/message.jsp?&item_id=${message.id}">修改</a>
+										<img alt="景点图片" src="${attraction.imgFile[0]}" width="20px" height="20px">
+										<img alt="景点图片" src="${attraction.imgFile[1]}" width="20px" height="20px">
+										<img alt="景点图片" src="${attraction.imgFile[2]}" width="20px" height="20px">
+									</td>
+									<td>${attraction.ticketPrices }</td>
+									<td>${attraction.address}</td>
+									<td>
+										<a href="jsp/manage/part/attraction.jsp?&item_id=${attraction.id}">修改</a>
 										&nbsp;
-										<a href="MessagesServlet?sign_message=delete&item_id=${message.id}">删除</a>
+										<a href="AttractionServlet?sign_attraction=delete&item_id=${attraction.id}">删除</a>
 									</td>
 								</tr>
 							</c:when>
 							<c:when test="${num.index%2!=0}">
 								<tr align="center" class="item2">
-									<td>${message.id}</td>
-									<td>${message.userId}</td>
-									<td>${message.content}</td>
-									<td>${message.agreeNum}</td>
-									<td>${message.disagreeNum}</td>
-									<td>${message.time}</td>
-									<td>${message.address}</td>
+									<td>${attraction.id}</td>
+									<td>${attraction.name}</td>
+									<td>${attraction.describe}</td>
+									<td>${attraction.seeNum}</td>
+									<td>${attraction.queryNum}</td>
 									<td>
-										<a href="jsp/manage/part/message.jsp?&item_id=${message.id}">修改</a>
+										<img alt="景点图片" src="${attraction.imgFile[0]}" width="20px" height="20px">
+										<img alt="景点图片" src="${attraction.imgFile[1]}" width="20px" height="20px">
+										<img alt="景点图片" src="${attraction.imgFile[2]}" width="20px" height="20px">
+									</td>
+									<td>${attraction.ticketPrices }</td>
+									<td>${attraction.address}</td>
+									<td>
+										<a href="jsp/manage/part/attraction.jsp?&item_id=${attraction.id}">修改</a>
 										&nbsp;
-										<a href="MessagesServlet?sign_message=delete&item_id=${message.id}">删除</a>
+										<a href="AttractionServlet?sign_attraction=delete&item_id=${attraction.id}">删除</a>
 									</td>
 								</tr>
 							</c:when>
@@ -106,9 +123,27 @@
 				<c:if test="${param.isadd!=null}">
 					<tr>
 						<c:forEach items="${tableHead}" var="tablehead">
-							<td align="center" width="10%">
-								<input type="text" width="80%" name="${tablehead}">
-							</td>
+							<c:choose>
+								<c:when test="${tablehead.equals('info')}">
+									<td align="center" width="10%">
+										<input type="file" width="80%" name="${tablehead}">
+									</td>
+								</c:when>
+								<c:when test="${tablehead.equals('img_file')}">
+									<td align="center" width="10%">
+										<input type="file" width="80%" name="image">
+										<br />
+										<input type="file" width="80%" name="image1">
+										<br />
+										<input type="file" width="80%" name="image2">
+									</td>
+								</c:when>
+								<c:when test="${!tablehead.equals('img_file')&&!tablehead.equals('info')}">
+									<td align="center" width="10%">
+										<input type="text" width="80%" name="${tablehead}">
+									</td>
+								</c:when>
+							</c:choose>
 						</c:forEach>
 						<td align="center" width="20%">
 							<a onclick="submitform()">提交</a>

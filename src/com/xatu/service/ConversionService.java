@@ -32,7 +32,7 @@ public class ConversionService {
 			tempAttraction.setDescribe(FileService.fileToString(temp[2], sc));
 			tempAttraction.setSeeNum(Integer.parseInt(temp[3]));
 			tempAttraction.setQueryNum(Integer.parseInt(temp[4]));
-			tempAttraction.setImgFile(FileService.getImageFile(temp[5]));
+			tempAttraction.setImgFile(FileService.getImageFile(temp[5], sc));
 			tempAttraction.setTicketPrices(Integer.parseInt(temp[6]));
 			tempAttraction.setAddress(temp[7]);
 			attractionList.add(tempAttraction);
@@ -154,7 +154,7 @@ public class ConversionService {
 		tempAttraction.setDescribe(FileService.fileToString(temp[2], sc));
 		tempAttraction.setSeeNum(Integer.parseInt(temp[3]));
 		tempAttraction.setQueryNum(Integer.parseInt(temp[4]));
-		tempAttraction.setImgFile(FileService.getImageFile(temp[5]));
+		tempAttraction.setImgFile(FileService.getImageFile(temp[5], sc));
 		tempAttraction.setTicketPrices(Integer.parseInt(temp[6]));
 		tempAttraction.setAddress(temp[7]);
 		return tempAttraction;

@@ -30,13 +30,13 @@ public class TableInfo {
 	public final static String servletName[] = { "ManagesServlet", "UserServlet", "AttractionServlet",
 			"AnnounceServlet", "MessagesServlet", "HotelsServlet", "CarServlet", "ActivitysServlet" };
 
-	// 留言板表头
-	public final static String attractionTableHead[] = { "id", "name", "info", "see_num", "query_num", "ticket_prices",
-			"address" };
+	// 景点板表头
+	public final static String attractionTableHead[] = { "id", "name", "info", "see_num", "query_num", "img_file",
+			"ticket_prices", "address" };
 	// 留言板表头
 	public final static String messageTableHead[] = { "id", "user_id", "content", "agree_num", "disagree_num", "time",
 			"address" };
-	// 留言板表头
+	// 活动板表头
 	public final static String activityTableHead[] = { "id", "name", "number", "prices", "info", "one", "two", "three",
 			"four", "five", "six", "seven" };
 
