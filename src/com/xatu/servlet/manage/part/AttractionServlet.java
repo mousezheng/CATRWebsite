@@ -1,10 +1,7 @@
 package com.xatu.servlet.manage.part;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,9 +50,8 @@ public class AttractionServlet extends HttpServlet {
 			if (sign.equals("updata")) { // ¸üÐÂ
 				updata(request, response, operation);
 			}
-			if (sign.equals("add"))
+			if (sign.equals("queryadd"))
 				makeAdd(request, response, operation);
-
 		}
 		if (sign != null && sign.equals("query")) {
 			tempStrs = query(request, response, operation);
@@ -102,22 +98,23 @@ public class AttractionServlet extends HttpServlet {
 	}
 
 	private void delete(HttpServletRequest request, HttpServletResponse response, DBOperation operation) {
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-		String path = request.getServletContext().getRealPath("/resources");
-		factory.setRepository(new File(path));
-		factory.setSizeThreshold(1024 * 1024);
-		ServletFileUpload upload = new ServletFileUpload(factory);
-		List<FileItem> list = null;
-		try {
-			list = (List<FileItem>) upload.parseRequest(request);
-		} catch (FileUploadException e) {
-			e.printStackTrace();
-		}
-		for (FileItem item : list) {
-			String name = item.getFieldName();
-			if (name.equals("id"))
-				operation.delete(TableInfo.tableName[2], item.getString());
-		}
+//		DiskFileItemFactory factory = new DiskFileItemFactory();
+//		String path = request.getServletContext().getRealPath("/resources");
+//		factory.setRepository(new File(path));
+//		factory.setSizeThreshold(1024 * 1024);
+//		ServletFileUpload upload = new ServletFileUpload(factory);
+//		List<FileItem> list = null;
+//		try {
+//			list = (List<FileItem>) upload.parseRequest(request);
+//		} catch (FileUploadException e) {
+//			e.printStackTrace();
+//		}
+//		for (FileItem item : list) {
+//			String name = item.getFieldName();
+//			if (name.equals("id"))
+		String id = request.getParameter("item_id");
+		operation.delete(TableInfo.tableName[2], id);
+//		}
 
 	}
 

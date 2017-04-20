@@ -31,10 +31,9 @@ public class ManagesServlet extends HttpServlet {
 		response.setCharacterEncoding("GBK");
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
-		session.setAttribute("tableHead", TableInfo.manageTableHead);
 		if (request.getParameter("sign_manage") != null && request.getParameter("sign_manage").equals("update")) {
 			String id = request.getParameter(TableInfo.manageTableHead[0]);
-			String userName = StringChage.encodingChage(TableInfo.manageTableHead[1]);
+			String userName = StringChage.encodingChage(request.getParameter(TableInfo.manageTableHead[1]));
 			String password = request.getParameter(TableInfo.manageTableHead[2]);
 			String[] data = { id, userName, password };
 			for (int i = 0; i < data.length; i++) {
@@ -45,6 +44,7 @@ public class ManagesServlet extends HttpServlet {
 		}
 		List<String[]> tempStrs = null;
 		tempStrs = operation.select(TableInfo.manageTableHead, TableInfo.tableName[0]);
+		session.setAttribute("tableHead", TableInfo.manageTableHead);
 		session.setAttribute("manages", ManagerService.StringToManage(tempStrs));
 		response.sendRedirect("jsp/manage/part/manage.jsp");
 	}

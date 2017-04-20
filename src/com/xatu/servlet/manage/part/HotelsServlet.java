@@ -42,16 +42,15 @@ public class HotelsServlet extends HttpServlet {
 			if (sign.equals("updata")) {
 				String id = request.getParameter(TableInfo.carTableHead[0]);
 				String time = request.getParameter(TableInfo.carTableHead[1]);
-				@SuppressWarnings("unused")
 				String contact_phone = request.getParameter(TableInfo.carTableHead[2]);
 				String name = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[3]));
 				String contact_name = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[4]));
 				String price = request.getParameter(TableInfo.carTableHead[5]);
-				String address = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[5]));
-				String[] data = { id, time, contact_name, name, contact_name, price, address };
-				// for (int i = 0; i < data.length; i++) {
-				// System.out.println(data[i]);
-				// }
+				String address = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[6]));
+				String[] data = { id, time, contact_phone, name, contact_name, price, address };
+//				 for (int i = 0; i < data.length; i++) {
+//				 System.out.println(data[i]);
+//				 }
 				operation.delete(TableInfo.tableName[5], id);
 				operation.insertInto(TableInfo.tableName[5], TableInfo.carTableHead, data);
 			}
@@ -83,16 +82,15 @@ public class HotelsServlet extends HttpServlet {
 	private void makeAdd(HttpServletRequest request, HttpServletResponse response, DBOperation operation) {
 		String id = request.getParameter(TableInfo.carTableHead[0]);
 		String time = request.getParameter(TableInfo.carTableHead[1]);
-		@SuppressWarnings("unused")
 		String contact_phone = request.getParameter(TableInfo.carTableHead[2]);
 		String name = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[3]));
 		String contact_name = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[4]));
 		String price = request.getParameter(TableInfo.carTableHead[5]);
 		String address = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[6]));
-		String[] data = { id, time, contact_name, name, contact_name, price, address };
-		// for (int i = 0; i < data.length; i++) {
-		// System.out.println(data[i]);
-		// }
+		String[] data = { id, time, contact_phone, name, contact_name, price, address };
+//		 for (int i = 0; i < data.length; i++) {
+//		 System.out.println(data[i]);
+//		 }
 		operation.insertInto(TableInfo.tableName[5], TableInfo.carTableHead, data);
 	}
 

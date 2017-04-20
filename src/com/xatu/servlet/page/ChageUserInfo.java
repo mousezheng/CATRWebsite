@@ -30,6 +30,9 @@ public class ChageUserInfo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		response.setHeader("Cache-Control", "no-cache");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("expires", -1);
 		String name = (String) session.getAttribute("username");
 		DBOperation operation = DBOperation.getMyDB();
 		String id = operation.getIdString("tb_user", "user_name", "id", name);
@@ -95,7 +98,7 @@ public class ChageUserInfo extends HttpServlet {
 		String realPath = path;
 		// String realPath = getServletContext().getRealPath("/") + "images";
 		File fileupload = new File(realPath);
-		// System.out.println(realPath);
+		System.out.println(realPath);
 		if (!fileupload.exists()) {
 			fileupload.mkdir();
 		}

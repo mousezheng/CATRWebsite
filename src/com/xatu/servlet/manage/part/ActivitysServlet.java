@@ -68,7 +68,9 @@ public class ActivitysServlet extends HttpServlet {
 			query = StringChage.encodingChage(query);
 			tempStrs = operation.selectLike(TableInfo.activityTableHead, TableInfo.tableName[7],
 					"id like '%" + query + "%' or " + "name like '%" + query + "%' or " + "info like '%" + query
-							+ "%' or " + "number like '%" + query + "%'");
+							+ "%' or " + "number like '%" + query + "%' or " + "one like '%" + query + "%' or "
+							+ "two like '%" + query + "%' or " + "three like '%" + query + "%' or " + "four like '%"
+							+ query + "%' or " + "six like '%" + query + "%' or " + "seven like '%" + query + "%'");
 		} else {
 			tempStrs = operation.select(TableInfo.activityTableHead, TableInfo.tableName[7]);
 		}

@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 <title>管理员</title>
-<link rel="stylesheet" href="bootstrap3.2.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="bootstrap3.2.2/css/bootstrap.min.css"> -->
 <script type="text/javascript" language="javascript">
 	function select(num) {
 		window.location.href = "ManageServlet?sign=" + num;
@@ -25,7 +25,10 @@
 </style>
 </head>
 <body>
-	<h1>管理员界面</h1>
+	<div style="width: 100%">
+		<a href="" style="float: right; padding-bottom: 20px">退出</a>
+		<h1 style="width: 200px">管理员界面</h1>
+	</div>
 	<hr />
 	<table name="table1" style="background-color: EEEEEE; height: 100%;" width="100%">
 		<tr>

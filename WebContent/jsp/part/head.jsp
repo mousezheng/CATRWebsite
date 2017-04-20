@@ -54,7 +54,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.jsp">网站首页</a>
+			<a class="navbar-brand" href="">网站首页</a>
 		</div>
 		<div id="navbar" style="width: 60%">
 			<ul class="nav navbar-nav">

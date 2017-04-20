@@ -82,15 +82,14 @@ public class MessagesServlet extends HttpServlet {
 	 * @param response
 	 */
 	private void makeAdd(HttpServletRequest request, HttpServletResponse response, DBOperation operation) {
-		String id = request.getParameter(TableInfo.messageTableHead[0]);
-		String time = request.getParameter(TableInfo.messageTableHead[1]);
-		@SuppressWarnings("unused")
-		String contact_phone = request.getParameter(TableInfo.messageTableHead[2]);
-		String name = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[3]));
-		String contact_name = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[4]));
-		String price = request.getParameter(TableInfo.messageTableHead[5]);
+		String id = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[0]));
+		String user_id = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[1]));
+		String content = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[2]));
+		String agree_num = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[3]));
+		String disagree_num = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[4]));
+		String time = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[5]));
 		String address = StringChage.encodingChage(request.getParameter(TableInfo.messageTableHead[6]));
-		String[] data = { id, time, contact_name, name, contact_name, price, address };
+		String[] data = { id, user_id, content, agree_num, disagree_num, time, address };
 		// for (int i = 0; i < data.length; i++) {
 		// System.out.println(data[i]);
 		// }

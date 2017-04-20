@@ -115,11 +115,15 @@
 		<table width="80%" style="margin-top: 30px; font-size: 20px">
 			<tr>
 				<td>
-					<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px">我的留言</button>
+					<a href="MessageServlet">
+						<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px;">
+							<font color="#000000">我要留言</font>
+						</button>
+					</a>
 				</td>
-<!-- 				<td> -->
-<!-- 					<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px">我的足迹</button> -->
-<!-- 				</td> -->
+				<!-- 				<td> -->
+				<!-- 					<button class="btn btn-lg btn-primary" style="width: 100%; height: 50px">我的足迹</button> -->
+				<!-- 				</td> -->
 			</tr>
 
 		</table>
