@@ -27,18 +27,26 @@ public class ActivitysServlet extends HttpServlet {
 		super();
 	}
 
+	/**
+	 * 对活动表单的一些管理员操作的业务，
+	 * 
+	 * 主要就是增删改查
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
+		//获取传入的标志指令 sign
 		String sign = request.getParameter("sign_activity");
 		System.out.println("=====================" + sign);
-		if (sign != null) {
-			if (sign.equals("delete")) {
+		if (sign != null) {	
+			//删除指令
+			if (sign.equals("delete")) {	
 				String id = request.getParameter("item_id");
 				operation.delete(TableInfo.tableName[7], id);
 			}
+			//更新指令
 			if (sign.equals("updata")) {
 				String id = StringChage.encodingChage(request.getParameter(TableInfo.activityTableHead[0]));
 				String name = StringChage.encodingChage(request.getParameter(TableInfo.activityTableHead[1]));
@@ -56,14 +64,17 @@ public class ActivitysServlet extends HttpServlet {
 				for (int i = 0; i < data.length; i++) {
 					System.out.println(data[i]);
 				}
+				//更新采用一增一删除的方式更简单点
 				operation.delete(TableInfo.tableName[7], id);
 				operation.insertInto(TableInfo.tableName[7], TableInfo.activityTableHead, data);
 			}
+			//没有指令默认为add指令，判断是否有输入参数
 		} else if (request.getParameter(TableInfo.activityTableHead[0]) != null)
 			makeAdd(request, response, operation);
 
 		List<String[]> tempStrs = null;
 		String query = request.getParameter("query");
+		//判断查询参数是否有内容，是否需要进行查询工作
 		if (query != null && !query.equals("")) {
 			query = StringChage.encodingChage(query);
 			tempStrs = operation.selectLike(TableInfo.activityTableHead, TableInfo.tableName[7],
@@ -74,10 +85,13 @@ public class ActivitysServlet extends HttpServlet {
 		} else {
 			tempStrs = operation.select(TableInfo.activityTableHead, TableInfo.tableName[7]);
 		}
+		// 从List<String[]> --> List<Activity>的映射交给service层完成
 		List<Activity> activitys = ManagerService.StringToActivity(tempStrs);
+		//设置数据源
 		session.setAttribute("activitys", activitys);
 		session.setAttribute("tables", TableInfo.oneToSeven);
 		session.setAttribute("tableHead", TableInfo.activityTableHead);
+		//跳转
 		response.sendRedirect("jsp/manage/part/activity.jsp");
 	}
 

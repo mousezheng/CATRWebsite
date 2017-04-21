@@ -35,24 +35,36 @@ public class AttractionServlet extends HttpServlet {
 		super();
 	}
 
+	/**
+	 * 景点表的业务逻辑处理
+	 * 
+	 * 数据库的增删改查等功能
+	 * 
+	 * 文件的上传与读取业务
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
 		List<String[]> tempStrs = null;
+		// 获取 attraction 的标志指令
 		String sign = request.getParameter("sign_attraction");
 		System.out.println("=====================" + sign);
 		if (sign != null) {
+			// 删除指令
 			if (sign.equals("delete")) {
 				delete(request, response, operation);
 			}
+			// 更新指令
 			if (sign.equals("updata")) { // 更新
 				updata(request, response, operation);
 			}
+			// 添加指令
 			if (sign.equals("queryadd"))
 				makeAdd(request, response, operation);
 		}
+		// 模糊查询指令
 		if (sign != null && sign.equals("query")) {
 			tempStrs = query(request, response, operation);
 			if (tempStrs.size() < 0)
@@ -62,6 +74,7 @@ public class AttractionServlet extends HttpServlet {
 			session.setAttribute("tableHead", TableInfo.attractionTableHead);
 			response.sendRedirect("jsp/manage/part/attraction.jsp");
 		} else {
+			// 查询所有数据源
 			tempStrs = operation.select(TableInfo.attractionTableHead, TableInfo.tableName[2]);
 			List<Attraction> attractions = ManagerService.StringToAttraction(tempStrs, request.getServletContext());
 			session.setAttribute("attractions", attractions);
@@ -70,6 +83,14 @@ public class AttractionServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 执行模糊查询业务
+	 * 
+	 * @param request
+	 * @param response
+	 * @param operation
+	 * @return
+	 */
 	private List<String[]> query(HttpServletRequest request, HttpServletResponse response, DBOperation operation) {
 		List<String[]> result = new ArrayList<>();
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -97,27 +118,41 @@ public class AttractionServlet extends HttpServlet {
 		return result;
 	}
 
+	/**
+	 * 删除业务
+	 * 
+	 * @param request
+	 * @param response
+	 * @param operation
+	 */
 	private void delete(HttpServletRequest request, HttpServletResponse response, DBOperation operation) {
-//		DiskFileItemFactory factory = new DiskFileItemFactory();
-//		String path = request.getServletContext().getRealPath("/resources");
-//		factory.setRepository(new File(path));
-//		factory.setSizeThreshold(1024 * 1024);
-//		ServletFileUpload upload = new ServletFileUpload(factory);
-//		List<FileItem> list = null;
-//		try {
-//			list = (List<FileItem>) upload.parseRequest(request);
-//		} catch (FileUploadException e) {
-//			e.printStackTrace();
-//		}
-//		for (FileItem item : list) {
-//			String name = item.getFieldName();
-//			if (name.equals("id"))
+		// DiskFileItemFactory factory = new DiskFileItemFactory();
+		// String path = request.getServletContext().getRealPath("/resources");
+		// factory.setRepository(new File(path));
+		// factory.setSizeThreshold(1024 * 1024);
+		// ServletFileUpload upload = new ServletFileUpload(factory);
+		// List<FileItem> list = null;
+		// try {
+		// list = (List<FileItem>) upload.parseRequest(request);
+		// } catch (FileUploadException e) {
+		// e.printStackTrace();
+		// }
+		// for (FileItem item : list) {
+		// String name = item.getFieldName();
+		// if (name.equals("id"))
 		String id = request.getParameter("item_id");
 		operation.delete(TableInfo.tableName[2], id);
-//		}
+		// }
 
 	}
 
+	/**
+	 * 更新业务
+	 * 
+	 * @param request
+	 * @param response
+	 * @param operation
+	 */
 	private void updata(HttpServletRequest request, HttpServletResponse response, DBOperation operation) {
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		String path = request.getServletContext().getRealPath("/resources");
@@ -276,6 +311,7 @@ public class AttractionServlet extends HttpServlet {
 
 		}
 		path = path + "/" + data[2];
+		//创建文件夹交给servlice完成
 		FileService.createDir(path);
 		data[2] = "resources/" + data[1] + "/describe.txt";
 		data[5] = "resources/" + data[1];

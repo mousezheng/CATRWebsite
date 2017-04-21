@@ -27,12 +27,14 @@ public class ManageServlet extends HttpServlet {
 		super();
 	}
 
+	/**
+	 * 主要对 jsp/manage/manage.jsp 的业务处理 左侧标签切换，对应不同的数据页面
+	 * 完成一些存储跳转操作，跳转目的地主要是servlet 因为需要动态的去加载数据源
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
 		String sign = request.getParameter("sign");
-		DBOperation operation = DBOperation.getMyDB();
-		HttpSession session = request.getSession();
 		// System.out.println(sign);
 		switch (sign) {
 		case "1":

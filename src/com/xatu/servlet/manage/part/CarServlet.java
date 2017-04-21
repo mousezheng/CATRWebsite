@@ -19,7 +19,7 @@ import com.xatu.util.StringChage;
 import com.xatu.util.TableInfo;
 
 /**
- * 用户表业务处理
+ * 租车表业务
  */
 @WebServlet("/CarServlet")
 public class CarServlet extends HttpServlet {
@@ -29,18 +29,26 @@ public class CarServlet extends HttpServlet {
 		super();
 	}
 
+	/**
+	 * 租出表管理员业务操作
+	 * 
+	 * 增删改查等任务
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");
 		DBOperation operation = DBOperation.getMyDB();
 		HttpSession session = request.getSession();
+		//获取租车标志指令
 		String sign = request.getParameter("sign_car");
 		System.out.println("=====================" + sign);
 		if (sign != null) {
+			//删除指令
 			if (sign.equals("delete")) {
 				String id = request.getParameter("item_id");
 				operation.delete(TableInfo.tableName[6], id);
 			}
+			//更新指令
 			if (sign.equals("updata")) {
 				String id = request.getParameter(TableInfo.carTableHead[0]);
 				String time = request.getParameter(TableInfo.carTableHead[1]);
@@ -50,27 +58,33 @@ public class CarServlet extends HttpServlet {
 				String price = request.getParameter(TableInfo.carTableHead[5]);
 				String address = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[6]));
 				String[] data = { id, time, contact_phone, name, contact_name, price, address };
-//				 for (int i = 0; i < data.length; i++) {
-//				 System.out.println(data[i]);
-//				 }
+				// for (int i = 0; i < data.length; i++) {
+				// System.out.println(data[i]);
+				// }
 				operation.delete(TableInfo.tableName[6], id);
 				operation.insertInto(TableInfo.tableName[6], TableInfo.carTableHead, data);
 			}
+			//添加指令
 		} else if (request.getParameter(TableInfo.carTableHead[0]) != null)
 			makeAdd(request, response, operation);
 
 		List<String[]> tempStrs = null;
 		String query = request.getParameter("query");
+		//模糊查询操作
 		if (query != null && !query.equals("")) {
 			query = StringChage.encodingChage(query);
-			tempStrs = operation.selectLike(TableInfo.carTableHead, "tb_car", "id like '%" + query + "%' or "
-					+ "name like '%" + query + "%' or "+ "address like '%" + query + "%' or " + "contact_name like '%" + query + "%'");
+			tempStrs = operation.selectLike(TableInfo.carTableHead, "tb_car",
+					"id like '%" + query + "%' or " + "name like '%" + query + "%' or " + "address like '%" + query
+							+ "%' or " + "contact_name like '%" + query + "%'");
 		} else {
 			tempStrs = operation.select(TableInfo.carTableHead, TableInfo.tableName[6]);
 		}
+		// 从数据到 bean 的映射交给 service 层完成
 		List<Car> cars = ManagerService.StringToCar(tempStrs);
+		// 设置 session
 		session.setAttribute("cars", cars);
 		session.setAttribute("tableHead", TableInfo.carTableHead);
+		// 跳转
 		response.sendRedirect("jsp/manage/part/car.jsp");
 	}
 
@@ -89,9 +103,9 @@ public class CarServlet extends HttpServlet {
 		String price = request.getParameter(TableInfo.carTableHead[5]);
 		String address = StringChage.encodingChage(request.getParameter(TableInfo.carTableHead[6]));
 		String[] data = { id, time, contact_phone, name, contact_name, price, address };
-//		 for (int i = 0; i < data.length; i++) {
-//		 System.out.println(data[i]);
-//		 }
+		// for (int i = 0; i < data.length; i++) {
+		// System.out.println(data[i]);
+		// }
 		operation.insertInto(TableInfo.tableName[6], TableInfo.carTableHead, data);
 	}
 

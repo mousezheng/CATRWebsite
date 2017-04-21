@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xatu.util.StringChage;
-
 /**
  * 数据库操作
  * 
@@ -521,6 +519,12 @@ public class DBOperation {
 		}
 	}
 
+	/**
+	 * 根据id删除tableName表中的记录
+	 * 
+	 * @param tableName
+	 * @param id
+	 */
 	public void delete(String tableName, String id) {
 		String sql = "delete from " + tableName + " where id='" + id + "'";
 		try {
@@ -534,10 +538,6 @@ public class DBOperation {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void updata(String string, String[] data, String id) {
-		
 	}
 
 }

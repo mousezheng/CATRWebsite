@@ -22,6 +22,7 @@ import com.xatu.bean.User;
 public class ManagerService {
 
 	/**
+	 * 将 List<String[]> 转换为 User
 	 * 
 	 * @param tempStrs
 	 * @return
@@ -41,6 +42,12 @@ public class ManagerService {
 		return users;
 	}
 
+	/**
+	 * 将 List<String[]> 转换为 Manage
+	 * 
+	 * @param tempStrs
+	 * @return
+	 */
 	public static List<Manage> StringToManage(List<String[]> tempStrs) {
 		List<Manage> manages = new ArrayList<Manage>();
 		for (String[] strs : tempStrs) {
@@ -55,6 +62,12 @@ public class ManagerService {
 		return manages;
 	}
 
+	/**
+	 * 将 List<String[]> 转换为 Announce
+	 * 
+	 * @param tempStrs
+	 * @return
+	 */
 	public static List<Announce> StringToAnnounce(List<String[]> tempStrs) {
 		List<Announce> announces = new ArrayList<>();
 		for (String[] strs : tempStrs) {
@@ -68,6 +81,12 @@ public class ManagerService {
 		return announces;
 	}
 
+	/**
+	 * 将 List<String[]> 转换为 Car
+	 * 
+	 * @param tempStrs
+	 * @return
+	 */
 	public static List<Car> StringToCar(List<String[]> tempStrs) {
 		List<Car> cars = new ArrayList<>();
 		for (String[] str : tempStrs) {
@@ -84,6 +103,12 @@ public class ManagerService {
 		return cars;
 	}
 
+	/**
+	 * 将 List<String[]> 转换为 Message
+	 * 
+	 * @param tempStrs
+	 * @return
+	 */
 	public static List<Message> StringToMessage(List<String[]> tempStrs) {
 		List<Message> messages = new ArrayList<>();
 		for (String[] strings : tempStrs) {
@@ -101,6 +126,12 @@ public class ManagerService {
 		return messages;
 	}
 
+	/**
+	 * 将 List<String[]> 转换为 Activity
+	 * 
+	 * @param tempStrs
+	 * @return
+	 */
 	public static List<Activity> StringToActivity(List<String[]> tempStrs) {
 		List<Activity> activitys = new ArrayList<>();
 		for (String[] strings : tempStrs) {
@@ -134,7 +165,13 @@ public class ManagerService {
 		return activitys;
 	}
 
-	public static List<Attraction> StringToAttraction(List<String[]> tempStrs,ServletContext sc) {
+	/**
+	 * 将 List<String[]> 转换为 Attraction
+	 * @param tempStrs
+	 * @param sc
+	 * @return
+	 */
+	public static List<Attraction> StringToAttraction(List<String[]> tempStrs, ServletContext sc) {
 		List<Attraction> attractionList = new ArrayList<>();
 		int n = tempStrs.size();
 		for (int i = 0; i < n; i++) {
@@ -143,7 +180,8 @@ public class ManagerService {
 			// 赋值
 			tempAttraction.setId(Integer.parseInt(temp[0]));
 			tempAttraction.setName(temp[1]);
-//			tempAttraction.setDescribe(FileService.fileToString(temp[2], sc));
+			// tempAttraction.setDescribe(FileService.fileToString(temp[2],
+			// sc));
 			tempAttraction.setDescribe(temp[2]);
 			tempAttraction.setSeeNum(Integer.parseInt(temp[3]));
 			tempAttraction.setQueryNum(Integer.parseInt(temp[4]));

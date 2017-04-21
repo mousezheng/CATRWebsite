@@ -20,6 +20,12 @@ import com.xatu.bean.User;
  */
 public class ConversionService {
 
+	/**
+	 * 将传入的 List<String[]> 转化为AttractionBean
+	 * @param objectsList
+	 * @param sc
+	 * @return
+	 */
 	public static List<Attraction> object2Attraction(List<String[]> objectsList, ServletContext sc) {
 		List<Attraction> attractionList = new ArrayList<>();
 		int n = objectsList.size();
@@ -40,6 +46,12 @@ public class ConversionService {
 		return attractionList;
 	}
 
+	/**
+	 * 将传入的 List<String[]> 转化为Car
+	 * @param objectsList
+	 * @param sc
+	 * @return
+	 */
 	public static List<Car> object2Car(List<String[]> objectsList, ServletContext sc) {
 		List<Car> cars = new ArrayList<>();
 		int n = objectsList.size();
@@ -58,6 +70,12 @@ public class ConversionService {
 		return cars;
 	}
 
+	/**
+	 * 将传入的 List<String[]> 转化为Hotel
+	 * @param objectsList
+	 * @param sc
+	 * @return
+	 */
 	public static List<Hotel> object2Hotel(List<String[]> objectsList, ServletContext sc) {
 		List<Hotel> hotels = new ArrayList<>();
 		int n = objectsList.size();
@@ -76,6 +94,12 @@ public class ConversionService {
 		return hotels;
 	}
 
+	/**
+	 * 将传入的 List<String[]> 转化为Activity
+	 * @param objectsList
+	 * @param sc
+	 * @return
+	 */
 	public static List<Activity> object2Activity(List<String[]> objectsList, ServletContext sc) {
 		List<Activity> activitys = new ArrayList<>();
 		int n = objectsList.size();
@@ -99,6 +123,12 @@ public class ConversionService {
 		return activitys;
 	}
 
+	/**
+	 * 将传入的 List<String[]> 转化为Message
+	 * @param objectsList
+	 * @param sc
+	 * @return
+	 */
 	public static List<Message> object2Message(List<String[]> objectsList, ServletContext sc) {
 		List<Message> messages = new ArrayList<>();
 		int n = objectsList.size();
@@ -121,6 +151,12 @@ public class ConversionService {
 		return messages;
 	}
 
+	/**
+	 * 将传入的 String[] 转化为User
+	 * @param objectsList
+	 * @param sc
+	 * @return
+	 */
 	public static User object2User(String[] objectsList, ServletContext sc) {
 		User tempUser = new User();
 		String[] temp = objectsList;
@@ -145,6 +181,12 @@ public class ConversionService {
 		return tempUser;
 	}
 
+	/**
+	 * 将传入的 String[] 转化为Attraction1
+	 * @param objectsList
+	 * @param sc
+	 * @return
+	 */
 	public static Attraction object2Attraction1(String[] objectsList, ServletContext sc) {
 		Attraction tempAttraction = new Attraction();
 		String[] temp = objectsList;

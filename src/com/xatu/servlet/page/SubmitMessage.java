@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.xatu.dao.DBOperation;
 import com.xatu.util.Jump;
-import com.xatu.util.StringChage;
 
 /**
  * 提交留言处理页面
@@ -31,7 +30,7 @@ public class SubmitMessage extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		String name = (String) session.getAttribute("username");
-		
+
 		DBOperation operation = DBOperation.getMyDB();
 		if (name == null || name.equals("")) {
 			Jump.jumpToFail(response, "用户还未登录无法留言，", "无法提交留言，请先登录");
@@ -42,7 +41,7 @@ public class SubmitMessage extends HttpServlet {
 			String time = df.format(new Date());// new Date()为获取当前系统时间
 			String id = operation.getIdString("tb_user", "user_name", "id", name);
 			String strs[] = { "null", "'" + id + "'", "'" + message + "'", "'" + "0" + "'", "'" + "0" + "'",
-					"'" + time + "'"};
+					"'" + time + "'" };
 			String heads[] = { "id", "user_id", "content", "agree_num", "disagree_num", "time" };
 			if (operation.insert(null, strs, heads, "tb_message")) {
 				response.sendRedirect("MessageServlet?sign=1");

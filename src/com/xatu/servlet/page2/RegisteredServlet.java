@@ -37,7 +37,12 @@ public class RegisteredServlet extends HttpServlet {
 			// 随机头像
 			Random random = new Random();
 			int temp = 1 + random.nextInt(3);
+			/*
+			 * 2017年4月21日11:09:07 
+			 * 修改随即头像功能去掉
+			 */
 			String headImgPath = "resources/head_img/head_" + temp + ".jpg";
+//			String toPath = "resources/head_img/head_" + temp + ".jpg";
 			operation.userRegistered(name, password, phone, headImgPath);
 			Jump.jumpToSuccess(response, name+"已经成功注册，", "注册成功");
 		}

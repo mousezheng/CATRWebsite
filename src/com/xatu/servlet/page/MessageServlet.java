@@ -25,7 +25,6 @@ public class MessageServlet extends HttpServlet {
 		super();
 	}
 
-	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setCharacterEncoding("GBK");

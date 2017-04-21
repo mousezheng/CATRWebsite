@@ -23,6 +23,12 @@ public class FileService {
 
 	static ServletContext sc;
 
+	/**
+	 * 文件转化器，将文件转换为字符串
+	 * @param path
+	 * @param sc
+	 * @return
+	 */
 	public static String fileToString(String path, ServletContext sc) {
 		FileService.sc = sc;
 		path = sc.getRealPath(path);
@@ -36,6 +42,12 @@ public class FileService {
 		return filtStr;
 	}
 
+	/**
+	 * 获取文件 path文件下的图片
+	 * @param path
+	 * @param sc
+	 * @return
+	 */
 	public static String[] getImageFile(String path, ServletContext sc) {
 		FileService.sc = sc;
 		String pathReal = sc.getRealPath(path);
@@ -47,6 +59,12 @@ public class FileService {
 		return fileNames;
 	}
 
+	/**
+	 * 上传 FileItemp文件到path目录
+	 * @param item
+	 * @param path
+	 * @return
+	 */
 	public static boolean uploadFile(FileItem item, String path) {
 		/**
 		 * 以下三步，主要获取 上传文件的名字
@@ -88,6 +106,11 @@ public class FileService {
 		return false;
 	}
 
+	/**
+	 * 创建一个文件夹，destDirName
+	 * @param destDirName
+	 * @return
+	 */
 	public static boolean createDir(String destDirName) {
 		File dir = new File(destDirName);
 		if (dir.exists()) {
@@ -108,6 +131,11 @@ public class FileService {
 	}
 }
 
+/**
+ * 文件过滤器
+ * @author zsl
+ *
+ */
 class fileFilter implements FilenameFilter {
 	@Override
 	// 重写accept方法,测试指定文件是否应该包含在某一文件列表中

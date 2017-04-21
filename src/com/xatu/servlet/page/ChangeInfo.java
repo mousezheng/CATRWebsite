@@ -37,11 +37,11 @@ public class ChangeInfo extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		String tableName = "tb_user";
-		String whereStr = "id='"+id+"'";
-		String tableHead[] = {"name","sex","age","address","phone","birthday","email","info"};
-		if (operation.updateTable(tableName,tableHead,info,whereStr)) {
+		String whereStr = "id='" + id + "'";
+		String tableHead[] = { "name", "sex", "age", "address", "phone", "birthday", "email", "info" };
+		if (operation.updateTable(tableName, tableHead, info, whereStr)) {
 			response.sendRedirect("UserInfoServlet");
-		}else{
+		} else {
 			Jump.jumpToFail(response, "修改失败，请重试，", "修改失败");
 		}
 	}
@@ -51,10 +51,13 @@ public class ChangeInfo extends HttpServlet {
 		doGet(request, response);
 	}
 
+	// 获取输入信息
 	private String getString(String input) {
-		return StringChage.encodingChage(request.getParameter(input) == null||request.getParameter(input).equals("") ? "null" : request.getParameter(input));
+		return StringChage.encodingChage(request.getParameter(input) == null || request.getParameter(input).equals("")
+				? "null" : request.getParameter(input));
 	}
 
+	// 获取值
 	private String getValue(String input) {
 		return StringChage.encodingChage(request.getParameterValues(input)[0]);
 	}
